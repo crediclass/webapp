@@ -1,0 +1,226 @@
+<!-- Page header -->
+<div class="page-header page-header-light">
+    <div class="page-header-content header-elements-md-inline">
+        <div class="page-title d-flex">
+            <h4><i class="icon-users4 mr-2"></i> <span class="font-weight-semibold">Análise</span> de Grupos</h4>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- /page header -->
+<!-- Content area -->
+<div class="content">
+
+    <!--    Widgets-->
+    <div class="row">
+        <div class="col-sm-6 col-xl-3">
+            <div class="card card-body">
+                <div class="media">
+                    <div class="mr-3 align-self-center">
+                        <i class="icon-users4 icon-3x text-success-400"></i>
+                    </div>
+
+                    <div class="media-body text-right">
+                        <h3 class="font-weight-semibold mb-0">652.549</h3>
+                        <span class="text-uppercase font-size-sm text-muted">total de cliente</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-3">
+            <div class="card card-body">
+                <div class="media">
+                    <div class="mr-3 align-self-center">
+                        <i class="icon-piggy-bank icon-3x text-indigo-400"></i>
+                    </div>
+
+                    <div class="media-body text-right">
+                        <h3 class="font-weight-semibold mb-0">R$ 1.245.382</h3>
+                        <span class="text-uppercase font-size-sm text-muted">total de crédito</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-3">
+            <div class="card card-body">
+                <div class="media">
+                    <div class="media-body">
+                        <h3 class="font-weight-semibold mb-0">54.390</h3>
+                        <span class="text-uppercase font-size-sm text-muted">total mensagem</span>
+                    </div>
+
+                    <div class="ml-3 align-self-center">
+                        <i class="icon-bubbles4 icon-3x text-blue-400"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-3">
+            <div class="card card-body">
+                <div class="media">
+                    <div class="media-body">
+                        <h3 class="font-weight-semibold mb-0">389.438</h3>
+                        <span class="text-uppercase font-size-sm text-muted">total de grupo</span>
+                    </div>
+
+                    <div class="ml-3 align-self-center">
+                        <i class="icon-collaboration icon-3x text-danger-400"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /   Widgets-->
+
+    <!--    <div class="card">
+            <div class="card-body">
+                <table class="table table-striped table-bordered" datatable="" dt-options="vo.dtOptions" dt-instance="vo.dtInstance" dt-columns="vo.dtColumns" ></table>
+                
+            </div>
+        </div>    -->
+
+
+
+
+
+
+
+
+
+
+
+    <div class="card">
+        <div class="card-body">
+            <!--            <table class="table table-striped table-bordered" datatable="" dt-options="vm.dtOptions" dt-instance="vm.dtInstance" dt-columns="vm.dtColumns" ></table>-->
+            <table class="table table-striped table-bordered" datatable="ng" dt-options="vm.dtOptions" dt-instance="vm.dtInstance"  width="100%" dt-column-defs="vm.dtColumnDefs">
+                <thead>
+                    <tr>
+
+                        <th class="text-center">Admin</th>
+                        <th class="text-center">Grupo</th>
+                        <th class="text-center">Prazo <br/>Orig</th>
+                        <th class="text-center">Prazo<br/>Rem</th>
+                        <th class="text-center">Venc</th>
+                        <th class="text-center">Faixa<br/>Créd</th>
+                        <th class="text-center">Adm<br/>total</th>
+                        <th class="text-center">Adm<br/>aa</th>
+                        <th class="text-center">Fundo<br/>Reser</th>                        
+                        <th class="text-center">Lanc<br/>Emb</th>
+                        <th class="text-center">Lanc<br/>Fixo</th>
+                        <th class="text-center">Parc<br/>Redu</th>
+                        <th class="text-center">Seg<br/>Obr</th>
+                        <th class="text-center">Tipo<br/>Parc</th>
+                        <th class="text-center">Tipo<br/>Corr.</th>
+                        <th class="text-center">Tabela<br/>Vendas</th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="g in grupos" >
+                        <td class="text-center">{{g.administradora}}</td>
+                        <td class="text-center">{{g.grupo}}</td>
+                        <td class="text-center">{{g.prazo_original}}</td>
+                        <td class="text-center">{{g.prazo_remanescente}}</td>
+                        <td class="text-center">{{g.vencimento}}</td>
+                        <td class="text-center">{{g.faixa_credito}}</td>
+                        <td class="text-center">{{g.tx_adminitracao * 100| number:2}}%</td>
+                        <td class="text-center">{{g.tx_administracao_anual * 100| number:2}}%</td>                        
+                        <td class="text-center">{{g.tx_fundo_reserva * 100| number:2}}%</td>
+                        <td class="text-center">{{g.tx_lance_embutido * 100| number:0}}%</td>
+                        <td class="text-center">{{g.tx_lance_fixo * 100| number:0}}%</td>
+                        <td class="text-center">{{g.tx_parcela_reduzida * 100| number:0}}%</td>
+                        <td class="text-center">{{g.isSeguro_Opcional| seguroObrigatorio}}</td>                        
+                        <td class="text-center">{{g.tipo_parcela}}</td> 
+                        <td class="text-center">{{g.indexador}}</td> 
+                        <td class="text-center">
+                            <button  type="button" class="btn btn-warning btn-sm pop" ng-click="openModalComposicaoParcela(g)" 
+                                     title="Parcelas">
+                                <span class="icon-coin-dollar" aria-hidden="true"></span>
+                            </button>                            
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>    
+
+    <div id="modal_composicao_parcela" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tabela de Vendas</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div id="modal-body" class="modal-body">
+                    <div class="text-right mr-3">
+                        <input type="checkbox" data-width="110" data-on="Com seguro" data-off="Sem seguro" data-onstyle="success" class="form-check-input-switch" ng-model="checked" ng-init="checked = false" />                            
+                    </div>
+                    
+                    <!-- Tabela com parcelas sem seguro-->
+                    <div ng-if="!checked" class="d-flex justify-content-center">
+                        <table class="table table-xs table-striped" >
+                            <thead>
+                                <tr>
+                                    <th>Parcelas</th>
+                                    <th class="text-center" ng-repeat="titulo in headCells">{{titulo}}</th>
+                                    <th class="text-center">Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="(itemName, value) in rows">
+                                    <td>R$ {{itemName| number:2}}</td>
+                                    <td ng-repeat="obj in sortByParcelaProp(value)">R$ {{obj.parcela_sem_seguro| number:2}}</td>
+                                    <td class="text-center">
+                                        <button  type="button" class="btn btn-info btn-sm" >
+                                            <span class="icon-magazine" aria-hidden="true"></span>
+                                        </button>                            
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                    <!-- Tabela com parcelas com seguro-->
+                    <div ng-if="checked" class="d-flex justify-content-center">
+                        <table class="table table-xs table-striped" >
+                            <thead>
+                                <tr>
+                                    <th>Parcelas</th>
+                                    <th ng-repeat="titulo in headCells">{{titulo}}</th>
+                                    <th class="text-center">Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="(itemName, value) in rows">
+                                    <td>R$ {{itemName| number:2}}</td>
+                                    <td ng-repeat="obj in sortByParcelaProp(value)">R$ {{obj.parcela_com_seguro| number:2}}</td>
+                                    <td class="text-center">
+                                        <button  type="button" class="btn btn-info btn-sm" >
+                                            <span class="icon-magazine" aria-hidden="true"></span>
+                                        </button>                            
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>                    
+                </div>
+            </div>
+        </div>
+    </div>  
+
+
+
+
+
+</div>

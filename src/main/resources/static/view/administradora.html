@@ -1,0 +1,102 @@
+<!-- Page header -->
+<div class="page-header page-header-light">
+    <div class="page-header-content header-elements-md-inline">
+        <div class="page-title d-flex">
+            <h4><i class="icon-users4 mr-2"></i> <span class="font-weight-semibold">Cadastro</span> - Administradora</h4>
+
+        </div>
+
+    </div>
+
+    <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+        <div class="d-flex">
+            <div class="breadcrumb">
+                <a th:href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+                <a href="#" class="breadcrumb-item">Consórcio</a>
+                <a href="#" class="breadcrumb-item">Administradora</a>
+                <span class="breadcrumb-item active">Cadastrar Administradora</span>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-- /page header -->
+<!-- Content area -->
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title">Cadastrar administradora</h5>
+                </div>
+                <div class="card-body">
+                    <form novalidate name="frmAdministradora" ng-submit="save()" >
+                        <div class="col-lg-4 mx-lg-auto">
+                            <div class="form-group">                                                
+                                <label>Nome da administradora</label>
+                                <input type="text" name="administradora" class="form-control" ng-model="administradora.nome" required >
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mx-lg-auto">
+                            <div class="form-group">                                                
+                                <label>Descrição</label>
+                                <textarea rows="6" cols="6" class="form-control" ng-model="administradora.descricao" required ></textarea>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" ng-disabled="frmAdministradora.administradora.$invalid" class="btn btn-primary">Salvar <i class="icon-paperplane ml-2"></i></button>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title">Lista das administradoras</h5>                                
+                </div>
+
+                <div class="card-body ml-3 mr-3">
+                    <div class="card card-table table-responsive shadow-0 mb-0">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nome</th>
+                                    <th>Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="adm in administradoras" >
+                                    <td >{{adm.id}}</td>                                                    
+                                    <td >{{adm.nome}}</td>
+                                    <td colspan="2">
+                                        <a class="btn btn-info btn-sm" ng-click="edit(adm)"  role="button">
+                                            <span class="icon-pencil3" title="Editar" aria-hidden="true"></span>
+                                        </a>
+                                        <button  type="button" ng-click="delete(adm.id)" class="btn btn-danger btn-sm">
+                                            <span class="icon-trash" aria-hidden="true"></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+
+
+</div>
+<!-- /content area -->

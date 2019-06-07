@@ -1,0 +1,769 @@
+<!-- Page header -->
+<div class="page-header page-header-light">
+    <div class="page-header-content header-elements-md-inline">
+        <div class="page-title d-flex">
+            <h4><i class="icon-users4 mr-2"></i> <span class="font-weight-semibold">Cadastro</span> - Pessoa Jurídica</h4>
+
+        </div>
+    </div>
+
+    <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+        <div class="d-flex">
+            <div class="breadcrumb">
+                <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+                <a href="#" class="breadcrumb-item">Módulo GI</a>
+                <a href="#" class="breadcrumb-item">Cadastro</a>
+                <span class="breadcrumb-item active">Pessoa Jurídica</span>
+            </div>
+
+        </div>
+
+        <div class="header-elements d-none">
+            <div class="breadcrumb justify-content-center">
+                <a href="/console/gi/listar/pessoa-juridica" class="breadcrumb-elements-item">
+                    <i class="icon-users4 mr-2"></i>
+                    Listar
+                </a>
+
+            </div>
+        </div>        
+    </div>
+</div>
+<!-- /page header -->
+<!-- Content area -->
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title"></h5>
+
+                </div>
+
+                <form method="POST">
+
+                    <!--Inicio dados Gerais-->
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="card-header header-elements-inline">
+                                <h5 class="card-title">Dados Gerais</h5>
+                            </div>
+
+
+                            <div class="card-body">
+
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Nome Fantasia</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="nome-fantasia" 
+                                               placeholder="Nome Fantasia" ng-model="pessoaJuridica.nomeFantasia">
+                                    </div>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Razão Social</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="razao-social" 
+                                               placeholder="Razão Social" ng-model="pessoaJuridica.razaoSocial">
+                                    </div>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">CNPJ</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="cnpj" 
+                                               placeholder="CNPJ" ng-model="pessoaJuridica.cnpj">
+                                    </div>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Inscr. Estadual</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="incricao-estadual" 
+                                               placeholder="Inscr. Estadual" ng-model="pessoaJuridica.inscricaoEstatual">
+                                    </div>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Formato Jurídico</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="formato-juridico" 
+                                               placeholder="Formato Jurídico" ng-model="pessoaJuridica.formatoJuridico">
+                                    </div>
+                                </div>                                    
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Data fundação</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="data-fundacao" 
+                                               placeholder="00/00/0000" ng-model="pessoaJuridica.dataFundacao">
+                                    </div>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Ramo de atividade</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="ramo-atividade" 
+                                               placeholder="Ramo de atividade" ng-model="pessoaJuridica.ramoAtividade">
+                                    </div>
+                                </div>                                   
+
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Tel. fixo</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="tel-fixo" 
+                                               placeholder="Tel. fixo" ng-model="pessoaJuridica.telefoneFixo" ui-br-phone-number-mask="areaCode">
+                                    </div>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Tel. celular</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="tel-celular" 
+                                               placeholder="Tel. celular" ng-model="pessoaJuridica.telefoneCelular" ui-br-phone-number-mask="areaCode">
+                                    </div>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">E-mail</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="e-mail" 
+                                               placeholder="E-mail" ng-model="pessoaJuridica.email">
+                                    </div>
+                                </div>                                    
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--Fim Dados Gerais-->
+
+                    <!--Inicio Endereço-->
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="card-header header-elements-inline">
+                                <h5 class="card-title">Endereço</h5>
+                            </div>
+
+
+                            <div class="card-body">
+
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">CEP</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="cep" 
+                                               placeholder="CEP" ng-blur="buscaCEP()" ng-model="pessoaJuridica.cep" ui-br-cep-mask>
+                                    </div>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Rua</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="rua" 
+                                               placeholder="Rua" ng-model="pessoaJuridica.rua">
+                                    </div>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Número</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="numerpo" 
+                                               placeholder="Número" ng-model="pessoaJuridica.numero">
+                                    </div>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Complemento</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="complemento" 
+                                               placeholder="Complemento" ng-model="pessoaJuridica.complemento">
+                                    </div>
+                                </div>  
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Bairro</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="bairro" 
+                                               placeholder="Bairro" ng-model="pessoaJuridica.bairro">
+                                    </div>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Cidade</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="cidade" 
+                                               placeholder="Cidade" ng-model="pessoaJuridica.cidade">
+                                    </div>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">UF</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="uf" 
+                                               placeholder="UF" ng-model="pessoaJuridica.uf">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--Fim Endereço-->   
+
+                    <!--Inicio formacao societaria -->
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="card-header header-elements-inline">
+                                <h5 class="card-title">Formação Societária </h5>
+                            </div>
+
+
+                            <div class="card-body">
+
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Sócio</label>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" id="cpf-socio" ng-blur="buscaSocio()" placeholder="CPF" ng-model="formacaoSocietariaPessoa.socio.cpf">
+                                    </div>
+
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" id="nome-socio" readonly placeholder="Nome completo" ng-model="formacaoSocietariaPessoa.socio.nome">
+                                    </div>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">% participação</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="participacao" 
+                                               placeholder="% participação" ng-model="formacaoSocietariaPessoa.participacao" ui-percentage-mask>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center align-items-center">                                        
+                                    <button type="submit" ng-click="adicionaFormacaoSocietaria()" class="btn bg-blue ml-3">Adicionar <i class="icon-add ml-2"></i></button>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+
+                                </div>  
+                                <div class="form-group row ml-3 mr-3">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">Ação</th>
+                                                    <th>Sócio</th>
+                                                    <th>Participação</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="p in pessoaJuridica.formacaoSocietaria" >
+                                                    <td style="width:10%" >
+                                                        <a ng-click="editarFormacaoSocietaria($index)" class="list-icons-item text-primary-600"><i class="icon-pencil7"></i></a>
+                                                        <a ng-click="removerFormacaoSocietaria($index)" class="list-icons-item text-danger-600"><i class="icon-trash"></i></a>
+                                                    </td>
+                                                    <td >{{p.socio.nome}}</td>                                                    
+                                                    <td >{{p.participacao * 100| number:2}} %</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--Fim formacao societaria -->  
+
+                    <!--Inicio participação em empresas -->
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="card-header header-elements-inline">
+                                <h5 class="card-title">Participação em Empresas </h5>
+                            </div>
+
+
+                            <div class="card-body">
+
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Empresa</label>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" id="cnpjParticipacao" ng-blur="buscaEmpresa()" placeholder="CNPJ" ng-model="participacaoEmpresasPessoa.empresa.cnpj">
+                                    </div>
+
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" readonly id="participacao-nome" placeholder="Razão social" ng-model="participacaoEmpresasPessoa.empresa.razaoSocial">
+                                    </div>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">% participação</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="participacao" 
+                                               placeholder="% participação" ng-model="participacaoEmpresasPessoa.participacao" ui-percentage-mask>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center align-items-center">                                        
+                                    <button type="submit" ng-click="adicionaParticipacaoEmpresas()" class="btn bg-blue ml-3">Adicionar <i class="icon-add ml-2"></i></button>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+
+
+                                </div>  
+                                <div class="form-group row ml-3 mr-3">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">Ação</th>
+                                                    <th>Empresa</th>
+                                                    <th>Participação</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>         
+                                                <tr ng-repeat="p in pessoaJuridica.participacaoEmpresas" >
+                                                    <td style="width:10%" >
+                                                        <a ng-click="editarParticipacaoEmpresas($index)" class="list-icons-item text-primary-600"><i class="icon-pencil7"></i></a>
+                                                        <a ng-click="removerParticipacaoEmpresas($index)" class="list-icons-item text-danger-600"><i class="icon-trash"></i></a>
+                                                    </td>
+                                                    <td >{{p.empresa.razaoSocial}}</td>                                                    
+                                                    <td >{{p.participacao * 100| number:2}} %</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--Fim participação em empresas -->     
+
+                    <!--Inicio Comprovação de renda-->
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="card-header header-elements-inline">
+                                <h5 class="card-title">Comprovação de renda</h5>
+                            </div>
+
+
+                            <div class="card-body">
+
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Comprovante</label>
+                                    <div class="col-sm-10">
+                                        <select class="custom-select" data-ng-options="a.valor for a in tipoComprovanteRenda track by a.id" ng-model="rendaPessoa.tipoComprovante" >
+                                            <option value="">Selecione</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Valor da Renda</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="valor-renda" 
+                                               placeholder="Valor da Renda" ng-model="rendaPessoa.renda" ui-money-mask>
+                                    </div>
+                                </div>                                    
+                                <!--                                    <div class="form-group row ml-3 mr-3">
+                                                                        <label class="col-form-label col-lg-2">Comprovante</label>
+                                                                        <div class="col-sm-10">
+                                                                            <input type="file" class="form-control-uniform">
+                                                                        </div>
+                                                                    </div>                                    -->
+
+
+                                <div class="d-flex justify-content-center align-items-center">                                        
+                                    <button type="submit" ng-click="adicionaRenda()" class="btn bg-blue ml-3">Adicionar <i class="icon-add ml-2"></i></button>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+
+
+                                </div>  
+                                <div class="form-group row ml-3 mr-3">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">Ação</th>
+                                                    <th>Comprovante</th>
+                                                    <th>Valor</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="p in pessoaJuridica.dadosRenda" >
+                                                    <td style="width:10%" >
+                                                        <a ng-click="editarRenda($index)" class="list-icons-item text-primary-600"><i class="icon-pencil7"></i></a>
+                                                        <a ng-click="removerRenda($index)" class="list-icons-item text-danger-600"><i class="icon-trash"></i></a>
+                                                    </td>
+                                                    <td >{{p.tipoComprovante.valor}}</td>                                                    
+                                                    <td >R$ {{p.renda| number:2}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--Fim Comprovação de renda-->   
+
+                    <!--Inicio Dados bancários-->
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="card-header header-elements-inline">
+                                <h5 class="card-title">Dados bancários</h5>
+                            </div>
+
+
+                            <div class="card-body">
+
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Banco</label>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" readonly id="codigo-banco" ng-model="bancoPessoa.banco.bancoId" >
+                                    </div>
+
+                                    <div class="col-md-7">
+                                        <select class="custom-select" data-ng-options="a.nomeBanco for a in bancos track by a.bancoId" ng-model="bancoPessoa.banco" >
+                                            <option value="">Selecione</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Agência</label>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" id="agencia-numero" placeholder="Número" ng-model="bancoPessoa.numAgencia">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" id="agencia-digito" placeholder="Dígito" ng-model="bancoPessoa.digitoAgencia">
+                                    </div>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Conta</label>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" id="conta-numero" placeholder="Número" ng-model="bancoPessoa.numConta">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" id="conta-digito" placeholder="Dígito" ng-model="bancoPessoa.digitoConta">
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center align-items-center">                                        
+                                    <button type="submit" class="btn bg-blue ml-3" ng-click="adicionaBanco()">Adicionar <i class="icon-add ml-2"></i></button>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+
+
+                                </div>  
+                                <div  class="form-group row ml-3 mr-3">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 65px" class="text-center">Ação</th>
+                                                    <th>Banco</th>
+                                                    <th>Agência</th>
+                                                    <th>Conta</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="p in pessoaJuridica.dadosBancarios" >
+                                                    <td style="width:10%" >
+                                                        <a ng-click="editarBanco($index)" class="list-icons-item text-primary-600"><i class="icon-pencil7"></i></a>
+                                                        <a ng-click="removerBanco($index)" class="list-icons-item text-danger-600"><i class="icon-trash"></i></a>
+                                                    </td>
+                                                    <td >{{p.banco.nomeBanco}}</td>                                                    
+                                                    <td >{{p.numAgencia}} - {{p.digitoAgencia}}</td>
+                                                    <td >{{p.numConta}} - {{p.digitoConta}}</td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--Fim Dados bancários-->   
+
+                    <!--Inicio aplicações financeiras -->
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="card-header header-elements-inline">
+                                <h5 class="card-title">Aplicações Financeiras</h5>
+                            </div>
+
+
+                            <div class="card-body">
+
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Tipo de ativo</label>
+                                    <div class="col-sm-10">
+                                        <select class="custom-select" data-ng-options="a.descricao for a in ativos track by a.id" ng-model="aplicacaoPessoa.tipoAtivo" >
+                                            <option value="">Selecione</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Valor</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="valor-aplicacao" 
+                                               placeholder="Valor" ng-model="aplicacaoPessoa.valor" ui-money-mask>
+                                    </div>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Liquidez</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="liquidez" 
+                                               placeholder="Liquidez" ng-model="aplicacaoPessoa.liquidez">
+                                    </div>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Rend. médio/mês</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="rendimento-medio" ui-percentage-mask 
+                                               placeholder="Rend. médio/mês" ng-model="aplicacaoPessoa.rendimento">
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-center align-items-center">                                        
+                                    <button type="submit" class="btn bg-blue ml-3" ng-click="adicionaAplicaoFinanceira()">Adicionar <i class="icon-add ml-2"></i></button>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+
+
+                                </div>  
+                                <div class="form-group row ml-3 mr-3">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">Ação</th>
+                                                    <th>Tipo de ativo</th>
+                                                    <th>Valor</th>
+                                                    <th>Liquidez</th>
+                                                    <th>Rendimento</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="p in pessoaJuridica.dadosAplicacoes" >
+                                                    <td style="width:10%" >
+                                                        <a ng-click="editarAplicaoFinanceira($index)" class="list-icons-item text-primary-600"><i class="icon-pencil7"></i></a>
+                                                        <a ng-click="removerAplicaoFinanceira($index)" class="list-icons-item text-danger-600"><i class="icon-trash"></i></a>
+                                                    </td>
+                                                    <td >{{p.tipoAtivo.descricao}}</td>                                                    
+                                                    <td >R$ {{p.valor| number:2}}</td>
+                                                    <td >{{p.liquidez}}</td>
+                                                    <td >{{p.rendimento * 100| number:2}}%</td>
+                                                </tr>     
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--Fim aplicações financeiras -->     
+
+                    <!--Inicio patrimônio -->
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="card-header header-elements-inline">
+                                <h5 class="card-title">Patrimônio </h5>
+                            </div>
+
+
+                            <div class="card-body">
+
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Tipo de Patrimônio</label>
+                                    <div class="col-sm-10">
+                                        <select class="custom-select" data-ng-options="a.descricao for a in patrimonios track by a.id" ng-model="patrimonioPessoa.tipoPatrimonio" >
+                                            <option value="">Selecione</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Valor de Mercado</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="valor-mercado" 
+                                               placeholder="Valor de Mercado" ng-model="patrimonioPessoa.valorDeMercado" ui-money-mask>
+                                    </div>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Situação</label>
+                                    <div class="col-sm-10">
+                                        <select class="custom-select" data-ng-options="a.descricao for a in situacaoPatrimonio track by a.id" ng-model="patrimonioPessoa.tipoSituacaoPatrimonio" >
+                                            <option value="">Selecione</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Saldo Devedor</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="saldo-devedor" 
+                                               placeholder="Saldo Devedor" ng-model="patrimonioPessoa.saldoDevedor" ui-money-mask>
+                                    </div>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Situação Doc.</label>
+                                    <div class="col-sm-10">
+                                        <select class="custom-select" data-ng-options="a.descricao for a in situacaoDoc track by a.id" ng-model="patrimonioPessoa.tipoSituacaoDoc" >
+                                            <option value="">Selecione</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-center align-items-center">                                        
+                                    <button type="submit" ng-click="adicionaPatrimonio()" class="btn bg-blue ml-3">Adicionar <i class="icon-add ml-2"></i></button>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+
+
+                                </div>  
+                                <div class="form-group row ml-3 mr-3">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">Ação</th>
+                                                    <th>Tipo de Patrimônio</th>
+                                                    <th>Valor</th>
+                                                    <th>Situação</th>
+                                                    <th>Saldo Devedor</th>
+                                                    <th>Situação Doc.</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="p in pessoaJuridica.dadosPatrimonio" >
+                                                    <td>
+                                                        <a ng-click="editarPatrimonio($index)"class="list-icons-item text-primary-600"><i class="icon-pencil7"></i></a>
+                                                        <a ng-click="removerPatrimonio($index)"class="list-icons-item text-danger-600"><i class="icon-trash"></i></a>
+                                                    </td>
+                                                    <td >{{p.tipoPatrimonio.descricao}}</td> 
+                                                    <td >R$ {{p.valorDeMercado| number:2}}</td>
+                                                    <td >{{p.tipoSituacaoPatrimonio.descricao}}</td>
+                                                    <td >R$ {{p.saldoDevedor| number:2}}</td>                                                        
+                                                    <td >{{p.tipoSituacaoDoc.descricao}}</td>
+
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--Fim patrimônio -->    
+
+                    <!--Inicio endividamento -->
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="card-header header-elements-inline">
+                                <h5 class="card-title">Endividamento de mercado </h5>
+                            </div>
+
+
+                            <div class="card-body">
+
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Tipo de dívida</label>
+                                    <div class="col-sm-10">
+                                        <select class="custom-select" data-ng-options="a.descricao for a in dividas track by a.id" ng-model="endividamentoPessoa.tipoDivida" >
+                                            <option value="">Selecione</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Prazo</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="prazo-divida" 
+                                               placeholder="Prazo" ng-model="endividamentoPessoa.prazo">
+                                    </div>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Saldo devedor</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="saldo-devedor-divida" 
+                                               placeholder="Saldo devedor" ng-model="endividamentoPessoa.saldoDevedor" ui-money-mask>
+                                    </div>
+                                </div> 
+                                <div class="form-group row ml-3 mr-3">
+                                    <label class="col-form-label col-lg-2">Valor da parcela</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="valor-parcela-divida" 
+                                               placeholder="Valor da parcela" ng-model="endividamentoPessoa.valorParcela" ui-money-mask>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-center align-items-center">                                        
+                                    <button type="submit" ng-click="adicionaEndividamento()" class="btn bg-blue ml-3">Adicionar <i class="icon-add ml-2"></i></button>
+                                </div>
+                                <div class="form-group row ml-3 mr-3">
+
+
+                                </div>  
+                                <div class="form-group row ml-3 mr-3">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">Ação</th>
+                                                    <th>Tipo de dívida</th>
+                                                    <th>Prazo</th>
+                                                    <th>Saldo devedor</th>
+                                                    <th>Valor parcela</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="p in pessoaJuridica.dadosEndividamento" >
+                                                    <td style="width:10%" >
+                                                        <a ng-click="editarEndividamento($index)" class="list-icons-item text-primary-600"><i class="icon-pencil7"></i></a>
+                                                        <a ng-click="removerEndividamento($index)" class="list-icons-item text-danger-600"><i class="icon-trash"></i></a>
+                                                    </td>                                                    
+                                                    <td >{{p.tipoDivida.descricao}}</td> 
+                                                    <td >{{p.prazo}}</td>
+                                                    <td >R$ {{p.saldoDevedor| number:2}}</td>
+                                                    <td >R$ {{p.valorParcela| number:2}}</td>  
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--Fim endividamento -->                    
+
+
+                    <div class="text-right mb-3">
+                        <button type="submit" ng-click="save()" class="btn bg-blue-800 mr-3">Salvar <i class="icon-paperplane ml-2"></i>
+                        </button>
+                        <!-- Float Bottom right menu -->
+                        <ul class="fab-menu fab-menu-fixed fab-menu-bottom-right">
+                            <li>
+                                <a ng-click="save()" class="fab-menu-btn btn bg-blue-800 btn-float rounded-round btn-icon">
+                                    <i class="fab-icon-open icon-paperplane"></i>
+                                </a>
+
+                            </li>
+
+                        </ul>
+                        <!-- /bottom right menu -->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /content area -->

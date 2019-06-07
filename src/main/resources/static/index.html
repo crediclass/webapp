@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+    <head>
+        <base href="/">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>CrediClass - Aquisições Inteligentes</title>
+
+        <!-- Global stylesheets -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+        <link href="/assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/bootstrap_limitless.min.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/layout.min.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/components.min.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/colors.min.css" rel="stylesheet" type="text/css">
+        <link href="/assets/js/main/noty.css" rel="stylesheet" type="text/css"/>
+        <link href="/assets/css/angular-datatables.css" rel="stylesheet" type="text/css"/>
+
+        <!-- /global stylesheets -->
+
+
+
+        <!-- /core JS files -->
+
+        <!-- /theme JS files -->
+
+    </head>
+
+    <body>
+        <!-- Main navbar -->
+        <div class="navbar navbar-expand-md navbar-dark">
+            <div class="navbar-brand">
+                <a href="/" class="d-inline-block">
+                    <img src="/assets/image/logo_light.png" alt="" style="width: 150px; height: 24px">
+                </a>
+            </div>
+
+            <div class="d-md-none">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-mobile">
+                    <i class="icon-tree5"></i>
+                </button>
+                <button class="navbar-toggler sidebar-mobile-main-toggle" type="button">
+                    <i class="icon-paragraph-justify3"></i>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbar-mobile">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="#" class="navbar-nav-link sidebar-control sidebar-main-toggle d-none d-md-block">
+                            <i class="icon-paragraph-justify3"></i>
+                        </a>
+                    </li>
+                </ul>
+
+                <span class="navbar-text ml-md-3 mr-md-auto"></span>
+
+                <ul class="navbar-nav">                            				
+                    <li class="nav-item dropdown dropdown-user">
+                        <a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
+                            <img src="/assets/image/user-silhouette.png" width="32px" height="32px" class="rounded-circle" alt="">
+                            <span>Administrador</span>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href="#" class="dropdown-item"><i class="icon-user-plus"></i> Meu perfil</a>
+                            <a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Mensagens <span class="badge badge-pill bg-blue ml-auto">58</span></a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item"><i class="icon-cog5"></i> Configurações</a>
+                            <a class="dropdown-item"><i class="icon-switch2"></i> Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /main navbar -->
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main sidebar -->
+            <div class="sidebar sidebar-dark sidebar-main sidebar-expand-md">
+
+                <!-- Sidebar mobile toggler -->
+                <div class="sidebar-mobile-toggler text-center">
+                    <a href="#" class="sidebar-mobile-main-toggle">
+                        <i class="icon-arrow-left8"></i>
+                    </a>
+                    Navigation
+                    <a href="#" class="sidebar-mobile-expand">
+                        <i class="icon-screen-full"></i>
+                        <i class="icon-screen-normal"></i>
+                    </a>
+                </div>
+                <!-- /sidebar mobile toggler -->
+
+
+                <!-- Sidebar content -->
+                <div class="sidebar-content">
+
+                    <!-- Main navigation -->
+                    <div class="card card-sidebar-mobile">
+                        <ul class="nav nav-sidebar" data-nav-type="accordion">
+                            <!-- Main -->
+                            <li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Main</div> <i class="icon-menu" title="Main"></i></li>
+                            <li class="nav-item">
+                                <a href="/" class="nav-link active">
+                                    <i class="icon-home4"></i>
+                                    <span>
+                                        Dashboard
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="nav-item nav-item-submenu">
+
+                                <a href="#" class="nav-link"><i class="icon-indent-decrease2"></i> <span>Administração</span></a>
+                                <ul class="nav nav-group-sub" data-submenu-title="Administração">
+                                    <li class="nav-item nav-item-submenu">
+                                        <a href="#" class="nav-link">Usuários</a>
+                                        <ul class="nav nav-group-sub">
+                                            <li class="nav-item"><a href="/console/administracao/usuario" class="nav-link">Cadastrar Usuário</a></li>
+                                            <li class="nav-item"><a href="/console/administracao/grupo-usuario" class="nav-link">Grupos e Permissões</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                            </li>
+                            <li class="nav-item nav-item-submenu">
+                                <a href="#" class="nav-link"><i class="icon-puzzle2"></i> <span>Módulo Consórcio</span></a>
+                                <ul class="nav nav-group-sub" data-submenu-title="Módulo Consórcio">
+                                    <li class="nav-item nav-item-submenu">
+                                        <a href="#" class="nav-link">Cadastro</a>
+                                        <ul class="nav nav-group-sub">
+                                            <li class="nav-item"><a href="/console/consorcio/grupo-consorcio" class="nav-link">Grupos</a></li>
+                                            <li class="nav-item"><a href="/console/consorcio/lance-consorcio" class="nav-link">Lances</a></li>
+                                            <!--                                             Terceiro nível
+                                                                                        <li class="nav-item nav-item-submenu">
+                                                                                            <a href="#" class="nav-link"> Configurações</a>
+                                                                                            <ul class="nav nav-group-sub">
+                                                                                                <li class="nav-item" ><a href="/console/consorcio/administradora" class="nav-link">Administradora</a></li>                                            
+                                                                                                <li class="nav-item"><a href="/console/consorcio/indexador-grupo-consorcio" class="nav-link">Indexador</a></li>                                            
+                                                                                                <li class="nav-item"><a href="/console/consorcio/tipo-parcela" class="nav-link">Tipo parcela</a></li>                                                                                        
+                                                                                                <li class="nav-item"><a href="/console/consorcio/periodo-lances" class="nav-link">Períodos do lance</a></li>
+                                                                                            </ul>-->
+                                    </li>                                            
+                                </ul>
+                            </li>
+
+                            <li class="nav-item"><a href="/console/consorcio/analise-de-grupo" class="nav-link">Análise de grupos</a></li>                                    
+                            <li class="nav-item"><a href="../../../LTR/clean/full/index.html" class="nav-link disabled">Relatórios <span class="badge bg-transparent align-self-center ml-auto">Em breve</span></a></li>
+                            <li class="nav-item nav-item-submenu">
+                                <a href="#" class="nav-link">Configurações</a>
+                                <ul class="nav nav-group-sub">
+                                    <li class="nav-item" ><a href="/console/consorcio/administradora" class="nav-link">Administradora</a></li>                                            
+                                    <li class="nav-item"><a href="/console/consorcio/indexador-grupo-consorcio" class="nav-link">Indexador</a></li>                                            
+                                    <li class="nav-item"><a href="/console/consorcio/tipo-parcela" class="nav-link">Tipo parcela</a></li>                                                                                        
+                                    <li class="nav-item"><a href="/console/consorcio/periodo-lances" class="nav-link">Períodos do lance</a></li>
+
+                                </ul>
+                            </li>
+                        </ul>
+                        </li>
+                        <!-- /page kits -->
+
+                        <li class="nav-item nav-item-submenu">
+                            <a href="#" class="nav-link"><i class="icon-brain"></i> <span>Módulo GI</span></a>
+                            <ul class="nav nav-group-sub" data-submenu-title="Módulo GI">
+                                <li class="nav-item nav-item-submenu">
+                                    <a href="#" class="nav-link">Cadastro</a>
+                                    <ul class="nav nav-group-sub">
+                                        <li class="nav-item"><a href="/console/gi/cadastro/pessoa-fisica" class="nav-link">Pessoa Física</a></li>
+                                        <li class="nav-item"><a href="/console/gi/cadastro/pessoa-juridica" class="nav-link">Pessoa Jurídica</a></li>
+                                    </ul>
+
+                                </li>
+                                <li class="nav-item nav-item-submenu">
+                                    <a href="#" class="nav-link"><span>Oportunidade</span></a>
+
+                                    <ul class="nav nav-group-sub" data-submenu-title="Themes">                                            
+                                        <li class="nav-item"><a href="/console/gi/oportunidade/listar-oportunidadess" class="nav-link">Listar</a></li>
+
+                                    </ul>
+                                </li>  
+
+                                <li class="nav-item nav-item-submenu">
+                                    <a href="#" class="nav-link">Configurações</a>
+                                    <ul class="nav nav-group-sub">
+                                        <li class="nav-item"><a href="/console/gi/cadastro/banco" class="nav-link">Instituições bancárias</a></li>
+                                        <li class="nav-item"><a href="/console/gi/cadastro/estado-civil" class="nav-link">Estado civil</a></li>
+                                        <li class="nav-item"><a href="/console/gi/cadastro/tipo-comprovante-renda" class="nav-link">Tipo comprovante de renda</a></li>
+                                        <li class="nav-item"><a href="/console/gi/cadastro/tipo-ativo" class="nav-link">Tipo ativo</a></li>
+                                        <li class="nav-item"><a href="/console/gi/cadastro/tipo-divida" class="nav-link">Tipo dívida</a></li>
+                                        <li class="nav-item"><a href="/console/gi/cadastro/tipo-patrimonio" class="nav-link">Tipo patrimônio</a></li>
+                                        <li class="nav-item"><a href="/console/gi/cadastro/tipo-situacao-doc" class="nav-link">Tipo situacão doc.</a></li>
+                                        <li class="nav-item"><a href="/console/gi/cadastro/tipo-situacao-patrimonio" class="nav-link">Tipo situacão patrimônio</a></li>
+                                        <li class="nav-item"><a href="/console/gi/cadastro/tipo-categoria-profissional" class="nav-link">Tipo categoria profissional</a></li>
+
+                                    </ul>
+                                </li>                                    
+                            </ul>
+
+                        </li>  
+                        <li class="nav-item nav-item-submenu">
+                            <a href="#" class="nav-link"><i class="icon-collaboration"></i> <span>Módulo RH</span></a>
+                            <ul class="nav nav-group-sub" data-submenu-title="Módulo RH">
+                                <li class="nav-item nav-item-submenu">
+                                    <a href="#" class="nav-link">Cadastro</a>
+                                    <ul class="nav nav-group-sub">
+                                        <li class="nav-item"><a href="#" class="nav-link">Questões</a></li>
+
+                                    </ul>
+                                </li>
+                            </ul>
+
+                        </li>                            
+                        </ul>
+                    </div>
+                    <!-- /main navigation -->
+
+                </div>
+                <!-- /sidebar content -->
+
+            </div>
+            <!-- /main sidebar -->
+
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <div class="content">
+                    <div ng-view></div>
+                </div>
+
+                <!-- Footer -->
+                <div class="navbar navbar-expand-lg navbar-light">
+                    <div class="text-center d-lg-none w-100">
+                        <button type="button" class="navbar-toggler dropdown-toggle" data-toggle="collapse" data-target="#navbar-footer">
+                            <i class="icon-unfold mr-2"></i>
+                            Footer
+                        </button>
+                    </div>
+
+                    <div class="navbar-collapse collapse" id="navbar-footer">
+                        <span class="navbar-text">
+                            &copy; 2018 - 2019. Tavares Serviços em Crédito
+                        </span>
+
+                        <ul class="navbar-nav ml-lg-auto">
+                            <li class="nav-item"><a href="#" class="navbar-nav-link" target="_blank"><i class="icon-lifebuoy mr-2"></i> Suporte</a></li>
+                            <li class="nav-item"><a href="/swagger-ui.html" class="navbar-nav-link" target="_blank"><i class="icon-file-text2 mr-2"></i> API Doc</a></li>                            
+                            <li class="nav-item"><a href="#" class="navbar-nav-link"><i class="icon-file-text2 mr-2"></i> Versão 1.0.0.1 beta</a></li>                            
+                        </ul>
+                    </div>
+                </div>
+                <!-- /footer -->
+
+            </div>
+
+
+        </div>
+        <!-- Template JS files -->
+        <script src="/assets/js/main/jquery.min.js"></script>
+        <script src="/assets/js/main/bootstrap.bundle.min.js"></script>
+        <script src="/assets/js/main/blockui.min.js" type="text/javascript"></script>
+        <script src="/assets/js/app.js"></script>
+        <script src="/assets/js/main/jquery.mask.js" type="text/javascript"></script>
+        <script src="/assets/js/main/noty.min.js" type="text/javascript"></script>
+        <script src="/assets/js/main/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="/assets/js/main/datatables.min.js" type="text/javascript"></script>
+        <script src="/assets/js/main/datatables_libs/col_reorder.min.js" type="text/javascript"></script>     
+        <script src="/assets/js/main/bootstrap4-toggle.min.js" type="text/javascript"></script>
+        <link href="/assets/css/bootstrap4-toggle.min.css" rel="stylesheet" type="text/css"/>
+
+
+
+
+        <!-- AngularJS libs files -->    
+        <script src="/assets/js/main/angular.min.js" type="text/javascript"></script>
+        <script src="/assets/js/main/angular-locale_pt-br.js" type="text/javascript"></script>
+        <script src="/assets/js/main/angular-route.min.js" type="text/javascript"></script>
+        <script src="/assets/js/main/angular-resource.min.js" type="text/javascript"></script>
+        <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-input-masks/4.3.0/angular-input-masks-standalone.js" type="text/javascript"></script>        
+
+        <script src="/assets/js/main/lodash.min.js" type="text/javascript"></script>
+        <script src="/assets/js/main/angular-animate.min.js" type="text/javascript"></script>
+        <script src="/assets/js/main/angular-datatables.js" type="text/javascript"></script>
+        <script src="/assets/js/main/angular-datatables.util.js" type="text/javascript"></script>
+        <script src="/assets/js/main/angular-datatables.options.js" type="text/javascript"></script>
+        <script src="/assets/js/main/angular-datatables.instances.js" type="text/javascript"></script>
+        <script src="/assets/js/main/angular-datatables.factory.js" type="text/javascript"></script>
+        <script src="/assets/js/main/angular-datatables.renderer.js" type="text/javascript"></script>
+        <script src="/assets/js/main/angular-datatables.directive.js" type="text/javascript"></script>
+
+
+
+
+        <!-- AngularJS controllers and services --> 
+        <script src="/app/app.js" type="text/javascript"></script>
+        <script src="/app/service/messages.js" type="text/javascript"></script>
+        <script src="/app/controller/administradora-controller.js" type="text/javascript"></script>
+        <script src="/app/controller/permissao-usuario-controller.js" type="text/javascript"></script>
+        <script src="/app/controller/usuario-controller.js" type="text/javascript"></script>
+        <script src="/app/controller/grupo-consorcio-controller.js" type="text/javascript"></script>
+        <script src="/app/controller/analise-grupo-consorcio-controller.js" type="text/javascript"></script>
+        <script src="/app/controller/indexador-controller.js" type="text/javascript"></script>
+        <script src="/app/controller/lance-consorcio-controller.js" type="text/javascript"></script>
+        <script src="/app/controller/autenticacao-controller.js" type="text/javascript"></script>
+        <script src="/app/controller/tipo-parcela-controller.js" type="text/javascript"></script>
+        <script src="/app/controller/periodo-lances-controller.js" type="text/javascript"></script>
+        <script src="/app/controller/pesquisa-rh-controller.js" type="text/javascript"></script>
+        <script src="/app/controller/cadastro-pessoa-fisica-controller.js" type="text/javascript"></script>
+        <script src="/app/controller/lista-pessoa-fisica-controller.js" type="text/javascript"></script>
+        <script src="/app/controller/cadastro-pessoa-juridica-controller.js" type="text/javascript"></script>
+        <script src="/app/controller/lista-pessoa-juridica-controller.js" type="text/javascript"></script>
+        <script src="/app/controller/cadastro-banco-controller.js" type="text/javascript"></script>
+        <script src="/app/controller/cadastro-estado-civil-controller.js" type="text/javascript"></script>
+        <script src="/app/controller/cadastro-tipo-comprovante-renda.js" type="text/javascript"></script>
+        <script src="/app/controller/cadastro-tipo-ativo-controller.js" type="text/javascript"></script>
+        <script src="/app/controller/cadastro-tipo-divida-controller.js" type="text/javascript"></script>
+        <script src="/app/controller/cadastro-tipo-patrimonio-controller.js" type="text/javascript"></script>
+        <script src="/app/controller/cadastro-tipo-situacao-doc-controller.js" type="text/javascript"></script>
+        <script src="/app/controller/cadastro-tipo-situacao-patrimonio-controller.js" type="text/javascript"></script>
+        <script src="/app/controller/cadastro-tipo-categoria-profissional-controller.js" type="text/javascript"></script>
+        <script src="/app/controller/lista-oportunidade-controller.js" type="text/javascript"></script>
+        <script src="/app/service/authentication.js" type="text/javascript"></script>
+
+
+
+    </body>
+</html>

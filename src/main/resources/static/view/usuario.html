@@ -1,0 +1,135 @@
+<!-- Page header -->
+<div class="page-header page-header-light">
+    <div class="page-header-content header-elements-md-inline">
+        <div class="page-title d-flex">
+            <h4><i class="icon-users4 mr-2"></i> <span class="font-weight-semibold">Cadastro</span> - Usuários</h4>
+
+        </div>
+    </div>
+
+    <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+        <div class="d-flex">
+            <div class="breadcrumb">
+                <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+                <a href="#" class="breadcrumb-item">Administração</a>
+                <a href="#" class="breadcrumb-item">Usuários</a>
+                <span class="breadcrumb-item active">Cadastrar usuários</span>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- /page header -->
+<!-- Content area -->
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title">Cadastrar usuário</h5>
+                </div>
+
+                <form method="POST">
+                    <fieldset class="ml-3 mr-3">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-2">Nome</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="nome" 
+                                       placeholder="Nome completo">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 form-control-label">E-mail:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="email" 
+                                       placeholder="E-mail">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 form-control-label">Usuário:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="username" 
+                                       placeholder="Usuário">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 form-control-label">Senha:</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" id="password" 
+                                       placeholder="Senha">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 form-control-label">Telefone:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control tel-celular" id="telefone" 
+                                       placeholder="Telefone">
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="card-header header-elements-inline">
+                                    <h5 class="card-title">Permissões do usuário</h5>
+                                </div>
+
+
+                                <div class="card-body">
+
+                                    <div  class="form-check form-check-inline">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" value="${perm.id}" class="form-check-input">
+                                            <span class="custom-control-description">{{perm.nome}}</span>
+                                        </label>
+                                    </div>
+
+
+
+
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </fieldset>
+
+                    <div class="text-center mb-3">
+                        <button type="submit" class="btn btn-primary">Salvar <i class="icon-paperplane ml-2"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title">Lista dos Grupos</h5>
+                </div>
+
+                <div class="card-body">
+                    <div class="card card-table table-responsive shadow-0 mb-0">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Foto</th>
+                                    <th>Nome</th>
+                                    <th>E-mail</th>
+                                    <th>Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /content area -->

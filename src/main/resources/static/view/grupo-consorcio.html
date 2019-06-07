@@ -1,0 +1,328 @@
+<!-- Page header -->
+<div class="page-header page-header-light">
+    <div class="page-header-content header-elements-md-inline">
+        <div class="page-title d-flex">
+            <h4><i class="icon-users4 mr-2"></i> <span class="font-weight-semibold">Cadastro</span> - Grupos</h4>
+
+        </div>
+
+    </div>
+
+    <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+        <div class="d-flex">
+            <div class="breadcrumb">
+                <a th:href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+                <a href="#" class="breadcrumb-item">Consórcio</a>
+                <a href="#" class="breadcrumb-item">Grupos</a>
+                <span class="breadcrumb-item active">Cadastrar Grupos</span>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-- /page header -->
+
+<!-- Content area -->
+<div class="content">
+
+    <div class="card">
+        <div class="card-body">
+            <form novalidate name="frmGrupo" ng-submit="save()" >
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="font-weight-semibold">Administradora</label>
+                                <select class="custom-select" data-ng-options="a.nome for a in administradoras track by a.id" ng-model="grupo.administradora" >
+                                    <option value="">Selecione</option>
+
+                                </select>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="font-weight-semibold">1º Assembléia</label>
+                                <input type="text" class="form-control" id="data_inauguracao" ng-model="grupo.data_inauguracao" placeholder="99-99-9999" >                                
+                            </div>  
+
+
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label class="font-weight-semibold">Taxa de adm. total</label>
+                                    <input type="text" class="form-control" ng-model="grupo.tx_adminitracao" ui-percentage-mask="2" >
+                                </div>
+                            </div>                             
+
+                            <div class="form-group">
+                                <label class="font-weight-semibold">Percentual seguro prestamista</label>
+                                <input type="text" class="form-control"  ng-model="grupo.tx_seguro_prestamista" ui-percentage-mask="4" >
+                            </div>
+
+
+
+
+
+                            <div class="form-group">
+                                <label class="font-weight-semibold">Percentual de fundo reserva</label>
+                                <input type="text" class="form-control "  ng-model="grupo.tx_fundo_reserva" ui-percentage-mask="2" >
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label class="font-weight-semibold">Dia do Vencimento</label>
+                                <input type="text" class="form-control" ng-model="grupo.vencimento" ui-number-mask="0"  >
+                            </div>  
+                            <div class="form-group">
+                                <label class="font-weight-semibold">Seguro obrigatório?</label><br/>
+                                <div class="form-check form-check-inline" style="margin-top: 12px;">
+                                    <label class="form-check-label ">
+                                        <input type="radio" class="form-check-input" name="seguro-opcional" ng-model="grupo.isSeguro_Opcional" ng-value="true">
+                                        Sim
+                                    </label>
+                                </div>
+
+                                <div class="form-check form-check-inline" style="margin-top: 12px;">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="seguro-opcional" ng-model="grupo.isSeguro_Opcional" ng-value="false">
+                                        Não
+                                    </label>
+                                </div>
+                            </div>                            
+
+
+
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="font-weight-semibold">Grupo</label>
+                                <input type="text" class="form-control" ng-model="grupo.nome" ng-change="grupo.nome = (grupo.nome | uppercase)"  >
+                            </div>
+
+                            <div class="form-group">
+                                <label class="font-weight-semibold">Prazo original</label>
+                                <input type="text" class="form-control" ng-model="grupo.prazo_original"  >
+                            </div> 
+
+                            <div class="form-group">
+                                <label class="font-weight-semibold">Tipo parcela</label>
+                                <select class="custom-select" data-ng-options="a.nome for a in tipoParcelas track by a.id" ng-model="grupo.tipoParcela" >
+                                    <option value="">Selecione</option>
+
+                                </select>
+                            </div> 
+
+                            <div class="form-group">
+                                <label class="font-weight-semibold">Percentual parcela reduzida</label>
+                                <input type="text" class="form-control" ng-model="grupo.tx_parcela_reduzida" ui-percentage-mask="2" >
+                            </div>
+
+                            <div class="form-group">
+                                <label class="font-weight-semibold">Percentual lance embutido</label>
+                                <input type="text" class="form-control"  ng-model="grupo.tx_lance_embutido" ui-percentage-mask="2" >
+                            </div>  
+                            <div class="form-group">
+                                <label class="font-weight-semibold">Percentual lance fixo</label>
+                                <input type="text" class="form-control" ng-model="grupo.tx_lance_fixo" ui-percentage-mask="2"  >
+                            </div>  
+
+                            <div class="form-group">
+                                <label class="font-weight-semibold">Tipo de correção</label>
+                                <select class="custom-select" data-ng-options="i.nome for i in indexadores track by i.id" ng-model="grupo.indexador" >
+                                    <option value="">Selecione</option>
+
+                                </select>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Salvar <i class="icon-paperplane ml-2"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="card">
+        <div class="card-header header-elements-inline">
+            <h5 class="card-title">Grupos</h5>                        
+        </div>
+        <table class="table table-striped table-bordered" datatable="ng" dt-options="vm.dtOptions" dt-instance="vm.dtInstance"  width="100%" dt-column-defs="vm.dtColumnDefs">
+            <thead>                                
+                <tr>
+                    <th>#</th>
+                    <th>Adm</th>
+                    <th>Grupo</th>
+                    <th>Venc.</th>
+                    <th>Prazo orig</th>
+                    <th>1º Assem.</th>
+                    <th class="text-center">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="g in grupos" >
+                    <td class="text-center">{{g.id}}</td>                                                    
+                    <td >{{g.administradora.nome}}</td>
+                    <td class="text-center" >{{g.nome}}</td>
+                    <td class="text-center">{{g.vencimento}}</td>
+                    <td class="text-center">{{g.prazo_original}}</td>
+                    <td class="text-center">{{g.data_inauguracao| date:'dd/MM/yyyy'}}</td>
+                    <td class="text-center" colspan="2">
+                        <button  type="button" class="btn btn-warning btn-sm pop" ng-click="openModalCredito(g)" 
+                                 title="Créditos">
+                            <span class="icon-coin-dollar" aria-hidden="true"></span>
+                        </button>
+                        <button  type="button" class="btn btn-primary btn-sm pop" ng-click="openModalParcela(g)" 
+                                 title="Composição da parcela mensal">
+                            <span class="icon-stack" aria-hidden="true"></span>
+                        </button>
+                        <button  type="button" ng-click="edit(g)" class="btn btn-info btn-sm">
+                            <span class="icon-pencil3" title="Editar" aria-hidden="true"></span>
+                        </button>
+                        <button  type="button" ng-click="delete(g.id)" class="btn btn-danger btn-sm">
+                            <span class="icon-trash" title="Composição de parcelas" aria-hidden="true"></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+
+
+        </table>
+    </div>
+
+
+    <div id="modal_form_credito" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-xs">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Cartas de crédito</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div id="modal-body" class="modal-body">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" ng-model="credito.valor" ui-money-mask>
+                        <span class="input-group-append">
+                            <button class="btn btn-default" type="button" ng-click="insertCredito()">Adicionar</button>
+                        </span>
+                    </div>
+
+                    <div class="d-flex justify-content-center">
+                        <table class="table table-xs table-striped">
+                            <tbody>
+                                <tr ng-repeat="c in creditos">
+                                    <td style="text-align: center;">R$ {{c.valor| number:2}}</td> 
+                                    <td colspan="2">
+                                        <a class="btn btn-outline-info btn-sm" ng-click="editCredito($index)"  role="button">
+                                            <span class="icon-pencil3" title="Editar" aria-hidden="true"></span>
+                                        </a>
+                                        <a class="btn btn-outline-warning btn-sm" ng-click="removeCredito($index)"  role="button">
+                                            <span class="icon-trash" title="Remover" aria-hidden="true"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn bg-primary" data-dismiss="modal" ng-click="save()">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal_form_parcela" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Composição da parcela mensal</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div id="modal-body" class="modal-body">
+                    <table class="table table-xs table-striped">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Parcelas</th>
+                                <th class="text-center">Fração tx administração</th>                               
+                                <th class="text-center">Ação</th>
+                                <th class="text-center"></th>
+                                <th class="text-center"></th>
+                                <th class="text-center"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center">
+                                    <input type="text" class="form-control form-control-sm text-center" placeholder="xxx - xxx" ng-model="parcela.parcela" >
+                                </td>
+                                <td class="text-center"><input type="text" class="form-control form-control-sm text-center" ng-model="parcela.tx_administracao" ui-percentage-mask="4" ></td>                                                                
+                                <td class="text-center"><button type="button" class="btn btn-dark" ng-click="insertParcela()" >Adicionar</button></td>
+                                <td class="text-center"></td>                 
+                                <td class="text-center"></td>                 
+                                <td class="text-center"></td>                 
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+
+
+
+                    <div class="d-flex justify-content-center">
+                        <table class="table table-xs table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Parcelas</th>
+                                    <th class="text-center">tx. adm</th>
+                                    <th class="text-center">tx. adm mensal</th>
+                                    <th class="text-center">fundo comum</th>
+                                    <th class="text-center">fundo reserva</th>
+                                    <th class="text-center">total mensal</th>
+                                    <th class="text-center">Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="p in parcelas">
+                                    <td class="text-center">{{p.parcela}}</td>
+                                    <td class="text-center">{{p.tx_administracao * 100| number:4}}</td>
+                                    <td class="text-center">{{p.tx_administracao_mensal * 100| number:4}}</td>
+                                    <td class="text-center">{{p.tx_fundo_comum * 100| number:4}}</td>
+                                    <td class="text-center">{{p.tx_fundo_reserva * 100| number:4}}</td>
+                                    <td class="text-center">{{p.tx_total * 100| number:4}}</td>
+                                    <td colspan="2">
+                                        <a class="btn btn-outline-info btn-sm" ng-click="editParcela($index)"  role="button">
+                                            <span class="icon-pencil3" title="Editar" aria-hidden="true"></span>
+                                        </a>
+                                        <a class="btn btn-outline-warning btn-sm" ng-click="removeParcela($index)"  role="button">
+                                            <span class="icon-trash" title="Remover" aria-hidden="true"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    <button id="salvarComposicaoParcela" type="button" class="btn bg-primary"  ng-click="saveComposicaoParcela()">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>    
+
+
+</div>
+<!-- /content area -->

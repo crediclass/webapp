@@ -1,0 +1,7 @@
+/*
+ * Copyright 20019 de CrediClass - Aquisições Inteligentes.
+ *
+ * Este software é de propriedade da CrediClass - Aquisições Inteligentes, 
+ * sendo desenvolvido e mantido exclusivamente por esta empresa.
+ *
+ */

@@ -1,0 +1,103 @@
+<!-- Page header -->
+<div class="page-header page-header-light">
+    <div class="page-header-content header-elements-md-inline">
+        <div class="page-title d-flex">
+            <h4><i class="icon-users4 mr-2"></i> <span class="font-weight-semibold">Cadastro</span> - Oportunidade</h4>
+
+        </div>
+
+    </div>
+
+    <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+        <div class="d-flex">
+            <div class="breadcrumb">
+                <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+                <a href="#" class="breadcrumb-item">Módulo GI</a>
+                <a href="#" class="breadcrumb-item">Cadastro</a>
+                <span class="breadcrumb-item active">Oportunidade</span>
+            </div>
+
+        </div>
+        <div class="header-elements d-none">
+            <div class="breadcrumb justify-content-center">
+                <a href="/console/gi/cadastro/oportunidade" class="breadcrumb-elements-item">
+                    <i class="icon-user-plus mr-2"></i>
+                    Novo
+                </a>
+
+            </div>
+        </div>        
+
+    </div>
+</div>
+<!-- /page header -->
+<!-- Content area -->
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title"></h5>
+
+                </div>
+
+
+                <fieldset class="ml-3 mr-3">  
+                    <!--Inicio dados Gerais-->
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="card-header header-elements-inline">
+                                <h5 class="card-title">Listar oportunidades</h5>
+                            </div>
+
+
+                            <div class="card-body">
+
+                                <div class="form-group row ml-3 mr-3">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">Ação</th>
+                                                    <th>Título</th>
+                                                    <th>Proponente</th>
+                                                    <th>Origem</th>
+                                                    <th>Dono</th>
+                                                    <th>Situação</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="p in oportunidades" >
+                                                    <td style="width:10%" >
+                                                        <a href="/console/gi/cadastro/oportunidade" ng-click="$event.preventDefault(); editarOportunidade(p)" class="list-icons-item text-primary-600">
+                                                            <i class="icon-pencil7"></i>
+                                                        </a>
+                                                        <a href="#" class="list-icons-item text-danger-600"><i class="icon-trash"></i></a>
+                                                    </td>
+                                                    <td >{{p.titulo}}</td>                                                    
+                                                    <td >{{p.proponentes[0].pessoaFisica.nome}}</td>                                                    
+                                                    <td >{{p.origem}}</td>                                                    
+                                                    <td >{{p.dono}}</td>
+                                                    <td >{{p.isAtivo}}</td>
+                                                </tr>                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--Fim Dados Gerais-->
+
+
+                </fieldset>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /content area -->

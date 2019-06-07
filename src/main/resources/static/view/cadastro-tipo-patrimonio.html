@@ -1,0 +1,96 @@
+<!-- Page header -->
+<div class="page-header page-header-light">
+    <div class="page-header-content header-elements-md-inline">
+        <div class="page-title d-flex">
+            <h4><i class="icon-users4 mr-2"></i> <span class="font-weight-semibold">Cadastro</span> - Tipo Ativo</h4>
+
+        </div>
+
+    </div>
+
+    <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+        <div class="d-flex">
+            <div class="breadcrumb">
+                <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+                <a href="#" class="breadcrumb-item">Módulo GI</a>
+                <a href="#" class="breadcrumb-item">Cadastro</a>
+                <span class="breadcrumb-item active">Tipo Patrimônio</span>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-- /page header -->
+<!-- Content area -->
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title">Cadastrar Tipo Patrimônio</h5>
+                </div>
+                <div class="card-body">
+                    <form novalidate name="frmIndexador" ng-submit="save()" >
+                        <div class="col-lg-4 mx-lg-auto">
+                            <div class="form-group">                                                
+                                <label>Descrição</label>
+                                <input type="text" id="nome" class="form-control" ng-model="tipoPatrimonio.descricao" required >
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" ng-disabled="frmIndexador.nome.$invalid" class="btn btn-primary">Salvar <i class="icon-paperplane ml-2"></i></button>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title">Lista dos tipos de patrimônio</h5>                                
+                </div>
+
+                <div class="card-body ml-3 mr-3">
+                    <div class="card card-table table-responsive shadow-0 mb-0">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Descrição</th>
+                                    <th>Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="i in tiposPatrimonio" >
+                                    <td >{{i.id}}</td>                                                    
+                                    <td >{{i.descricao}}</td>
+                                    <td colspan="2">
+                                        <a class="btn btn-info btn-sm" ng-click="edit(i)"  role="button">
+                                            <span class="icon-pencil3" title="Editar" aria-hidden="true"></span>
+                                        </a>
+                                        <button  type="button" ng-click="delete(i.id)" class="btn btn-danger btn-sm">
+                                            <span class="icon-trash" aria-hidden="true"></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+
+
+</div>
+<!-- /content area -->

@@ -1,0 +1,165 @@
+<!-- Page header -->
+<div class="page-header page-header-light">
+    <div class="page-header-content header-elements-md-inline">
+        <div class="page-title d-flex">
+            <h4><i class="icon-users4 mr-2"></i> <span class="font-weight-semibold">Cadastro</span> - Lances</h4>
+
+        </div>
+
+    </div>
+
+    <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+        <div class="d-flex">
+            <div class="breadcrumb">
+                <a th:href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+                <a href="#" class="breadcrumb-item">Consórcio</a>
+                <a href="#" class="breadcrumb-item">Lances</a>
+                <span class="breadcrumb-item active">Cadastrar Lances</span>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-- /page header -->
+
+<!-- Content area -->
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header header-elements-inline">
+                        <h5 class="card-title">Cadastrar Lances</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">  
+
+
+                            <form style="width: 100%;" class="form-inline">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        Selecione a administradora e o período que deseja cadastrar o lance:
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <select id="administradora" class="custom-select" data-ng-options="a.nome for a in administradoras track by a.id" ng-model="grupo.administradora" >
+                                        <option value="">Selecione</option>
+
+                                    </select>  
+                                </div>
+                                <div class="col-md-2">
+                                    <select id="periodo" class="custom-select" data-ng-options="p.valor for p in periodoLances track by p.id" ng-model="dataLances.valor" >
+                                        <option value="">Selecione</option>
+
+                                    </select>
+                                </div>
+
+
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <button type="submit" ng-click="carregaGrupo(grupo.administradora)"  class="btn btn-primary">Carregar grupos para cadastro <i class="icon-stack ml-2"></i></button>
+                                    </div>
+                                </div>
+
+                            </form>
+
+
+                        </div>  
+
+
+
+
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body ml-3 mr-3">
+                            <div class="card card-table table-responsive shadow-0 mb-0">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 150px" class="text-center">Dados</th>
+                                            <th style="width: 150px" > 
+                                                <div class="input-group">
+                                                    <select style="width: 120px" class="form-control" data-ng-options="a.valor for a in periodoLances track by a.id" ng-model="dataLances.valor">
+                                                        <option value="">Selecione</option>
+                                                    </select>            
+                                                    <span class="input-group-btn ml-3">
+                                                        <button type="submit" ng-click="carregaPorPeriodo()"class="btn btn-outline-info">Editar <i class="icon-pencil3 ml-2"></i></button>
+                                                    </span>
+                                                </div>
+
+
+
+
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="(grupo, value) in grupos" >
+                                            <td>
+                                                <b>Grupo:</b> {{value.nome}}<br/>
+                                                <b>Prazo:</b> {{value.prazo_remanescente}}<br/>
+                                                <b>Crédito:</b> {{value.faixa_credito}}<br/>
+
+                                            </td> 
+                                            <td>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control form-control-sm" ng-value="{{value.lances[0].qtdeContemplados}}" ng-model="value.lances[0].qtdeContemplados"  placeholder="Qte contemplados">                                                    
+                                                    <input type="text" class="form-control form-control-sm" ng-value="{{value.lances[0].qtdeOfertas}}" ng-model="value.lances[0].qtdeOfertas"  placeholder="Qte ofertados">                                                    
+                                                </div> 
+
+                                                <div class="input-group" >
+                                                    <input type="text" class="form-control form-control-sm" ng-model="value.lances[0].valorLance" ui-money-mask>
+                                                    <span class="input-group-append">
+                                                        <button class="btn btn-warning" type="button" ng-click="insertLance(value)">Adicionar</button>
+                                                    </span>
+                                                </div>
+
+                                                <div>
+                                                    <table class="table table-xs table-striped">
+                                                        <tbody>
+                                                            <tr ng-repeat="l in value.lances[0].detalhes">
+                                                                <td style="text-align: center;">R$ {{l.valor| number:2}}</td> 
+                                                                
+                                                                <td colspan="2">
+                                                                    <a class="btn btn-outline-info btn-sm" ng-click="editDetalheLance(l)"  role="button">
+                                                                        <span class="icon-pencil3" title="Editar" aria-hidden="true"></span>
+                                                                    </a>
+                                                                    <a class="btn btn-outline-warning btn-sm" ng-click="removeDetalheLance(l)"  role="button">
+                                                                        <span class="icon-trash" title="Remover" aria-hidden="true"></span>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <br>
+                                                    <div class="text-right">
+                                                        <div class="form-group">
+                                                            <button type="submit" ng-click="save(value)"class="btn btn-success">Salvar lance <i class="icon-floppy-disk ml-2"></i></button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </td>
+
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>                    
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- /content area -->
