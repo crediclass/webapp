@@ -134,10 +134,17 @@ app.config(function ($routeProvider, $locationProvider)
             
             // Oportunidade
             
+            .when('/console/gi/oportunidade/cadastrar/:oportunidadeId?', {
+                templateUrl: 'view/cadastro-oportunidade.html',
+                controller: 'cadastroOportunidadeController',
+            })
+                   
             .when('/console/gi/oportunidade/listar-oportunidade', {
                 templateUrl: 'view/listar-oportunidade.html',
                 controller: 'listaOportunidadeController',
-            })            
+            })    
+            
+          
 
 
             // Módulo RH - Cadastro

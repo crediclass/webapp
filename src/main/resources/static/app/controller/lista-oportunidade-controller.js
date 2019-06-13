@@ -13,7 +13,7 @@ app.controller("listaOportunidadeController", function ($scope, $http, $location
             url: baseUrl
         }).then(function (response) {
             $scope.oportunidades = response.data;
-            console.log($scope.oportunidades);
+            //console.log($scope.oportunidades);
         }, function (response) {
             messageService.error();
         });
@@ -24,11 +24,20 @@ app.controller("listaOportunidadeController", function ($scope, $http, $location
 
 
     $scope.editarOportunidade = function (value) {
-        $location.path('/console/gi/cadastro/oportuniade/'+ value.id );
+        $location.path('/console/gi/oportunidade/cadastrar/'+ value.id );
        
     };
 
 
 
 
+});
+
+app.filter('isAtivoFiltro', function ($sce) {
+    return function (val) {
+        if (!val)
+            return $sce.trustAsHtml('<span class="badge badge-danger">Inativo</span>');
+
+        return $sce.trustAsHtml('<span class="badge badge-success">Ativo</span>');
+    };
 });

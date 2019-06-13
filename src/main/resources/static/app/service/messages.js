@@ -48,7 +48,18 @@ app.factory('messageService', function () {
     service.cpfNaoEncontrado = function () {
         new Noty({
             theme: ' alert alert-danger alert-styled-left p-0 bg-white',
-            text: 'Ops, o cpf informado não foi encontrado!',
+            text: 'Ops, o CPF informado não foi encontrado!',
+            type: 'error',
+            timeout: 2500,
+            closeWith: ['button']
+
+        }).show();
+    };
+    
+    service.cnpjNaoEncontrado = function () {
+        new Noty({
+            theme: ' alert alert-danger alert-styled-left p-0 bg-white',
+            text: 'Ops, o CNPJ informado não foi encontrado!',
             type: 'error',
             timeout: 2500,
             closeWith: ['button']

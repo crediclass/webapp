@@ -28,23 +28,25 @@ import lombok.Setter;
 @Setter
 
 @Entity
-@Table(name = "console_proponente")
-public class Proponente implements Serializable {
+@Table(name = "console_bem_objeto")
+public class BemObjeto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Boolean isPrincipal = false;
+    private String finalidade;    
+    private String territorio;
+    private String numMatricula;
+    private String cartorio;
+    private String numVagasGaragem;
+    private String numMatriculaVagasGaragem;
+    private String numIptu;
+    private String areaConstruida;
+    private String tipoAlienacao;
+    private String endereco;
+    private String municipio;
     
-    @ManyToOne
-    @JoinColumn(name = "pessoa_fisica_id", nullable = true)
-    private PessoaFisica pessoaFisica;
-
-
-    @ManyToOne
-    @JoinColumn(name = "pessoa_juridica_id", nullable = true)
-    private PessoaJuridica pessoaJuridica;
 
     @Override
     public int hashCode() {
@@ -64,7 +66,7 @@ public class Proponente implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Proponente other = (Proponente) obj;
+        final BemObjeto other = (BemObjeto) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }

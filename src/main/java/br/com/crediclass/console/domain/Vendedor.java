@@ -7,7 +7,6 @@
  */
 package br.com.crediclass.console.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Entity;
@@ -28,15 +27,14 @@ import lombok.Setter;
 @Setter
 
 @Entity
-@Table(name = "console_proponente")
-public class Proponente implements Serializable {
+@Table(name = "console_vendedor")
+public class Vendedor implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Boolean isPrincipal = false;
-    
+   
     @ManyToOne
     @JoinColumn(name = "pessoa_fisica_id", nullable = true)
     private PessoaFisica pessoaFisica;
@@ -64,7 +62,7 @@ public class Proponente implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Proponente other = (Proponente) obj;
+        final Vendedor other = (Vendedor) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }

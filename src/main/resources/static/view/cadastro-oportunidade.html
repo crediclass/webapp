@@ -1,0 +1,494 @@
+<!-- Page header -->
+<div class="page-header page-header-light">
+    <div class="page-header-content header-elements-md-inline">
+        <div class="page-title d-flex">
+            <h4><i class="icon-users4 mr-2"></i> <span class="font-weight-semibold">Cadastro</span> - Oportunidade</h4>
+
+        </div>
+    </div>
+
+    <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+        <div class="d-flex">
+            <div class="breadcrumb">
+                <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+                <a href="#" class="breadcrumb-item">Módulo GI</a>
+                <a href="#" class="breadcrumb-item">Cadastro</a>
+                <span class="breadcrumb-item active">Oportunidade</span>
+            </div>
+
+        </div>
+        <div class="header-elements d-none">
+            <div class="breadcrumb justify-content-center">
+                <a href="/console/gi/oportunidade/listar-oportunidade" class="breadcrumb-elements-item">
+                    <i class="icon-users4 mr-2"></i>
+                    Listar
+                </a>
+
+            </div>
+        </div>          
+    </div>
+</div>
+<!-- /page header -->
+<!-- Content area -->
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title"></h5>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        <!--Inicio dados Gerais-->
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="card-header header-elements-inline">
+                                    <h5 class="card-title">Dados da oportunidade</h5>
+                                </div>
+
+
+                                <div class="card-body">
+
+                                    <div class="form-group row ml-3 mr-3">
+                                        <div class="col-lg-6">
+                                            <div class="row">
+                                                <label class="col-md-4 col-form-label">Título </label>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control" placeholder="Título" ng-model="oportunidade.titulo">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <div class="row">
+                                                <label class="col-md-4 col-form-label">Origem </label>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control" placeholder="Origem" ng-model="oportunidade.origem">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row ml-3 mr-3">
+                                        <div class="col-lg-6">
+                                            <div class="row">
+                                                <label class="col-md-4 col-form-label">Valor </label>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control" placeholder="Valor" ng-model="oportunidade.valorOportunidade" ui-money-mask>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <div class="row">
+                                                <label class="col-md-4 col-form-label">Dono </label>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control" placeholder="Dono" ng-model="oportunidade.dono">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="text-right mr-3">
+                                        <input type="checkbox" data-width="110" checked data-on="Ativo" data-off="Inativo" data-onstyle="success" class="form-check-input-switch" ng-model="oportunidade.isAtivo"/>                            
+                                    </div>
+
+
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <!--Fim Dados Gerais-->
+
+                        <!--Inicio Proponentes-->
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="card-header header-elements-inline">
+                                    <h5 class="card-title">Proponetes</h5>
+                                </div>
+
+
+                                <div class="card-body">
+
+                                    <div class="form-group row ml-3 mr-3">
+                                        <label class="col-form-label col-lg-2">Prononente</label>
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control cpfcnpj" id="doc-proponente" ng-blur="buscaProponente()" placeholder="CPF/CNPJ" ng-model="proponenteLocal.cpfCnpj">
+                                            <input type="hidden" ng-model="proponenteLocal.pessoaId">
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            <input type="text" class="form-control" readonly ng-model="proponenteLocal.nome">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="text-right mr-3">
+                                        <input type="checkbox" id="proponentePrincial" data-width="110" data-on="Principal" data-off="Não principal" data-onstyle="warning" class="form-check-input-switch" ng-model="proponenteLocal.isPrincipal"/>                            
+                                    </div>
+                                    <div class="d-flex justify-content-center align-items-center">                                        
+                                        <button type="submit" class="btn bg-blue ml-3" ng-click="adicionaProponente()">Adicionar <i class="icon-add ml-2"></i></button>
+                                    </div>                                    
+                                    <div class="form-group row ml-3 mr-3">
+
+
+                                    </div>                                    
+
+                                    <div  class="form-group row ml-3 mr-3">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width: 65px" class="text-center">Ação</th>
+                                                        <th>Nome proponente</th>
+                                                        <th class="text-center">Proponente principal</th>
+                                                        <th class="text-center">Tipo</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="p in oportunidade.proponentes" >
+                                                        <td style="width:10%" >
+                                                            <a ng-click="editarProponente($index)" class="list-icons-item text-primary-600"><i class="icon-pencil7"></i></a>
+                                                            <a ng-click="removerProponente($index)" class="list-icons-item text-danger-600"><i class="icon-trash"></i></a>
+                                                        </td>
+                                                        <td >{{p.pessoaFisica.nome|| p.pessoaJuridica.nomeFantasia  }} </td>
+                                                        <td class="text-center" ><p ng-bind-html="p.isPrincipal | isPrincipalFiltro"></p></td>  
+                                                        <td class="text-center" ><p ng-bind-html="p.pessoaFisica.cpf | tipoPessoa"></p></td> 
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!--Fim Proponentes-->
+
+                        <!--Inicio Vendedores-->
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="card-header header-elements-inline">
+                                    <h5 class="card-title">Vendedores</h5>
+                                </div>
+
+
+                                <div class="card-body">
+
+                                    <div class="form-group row ml-3 mr-3">
+                                        <label class="col-form-label col-lg-2">Vendedor</label>
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control cpfcnpj" id="doc-vendedor" ng-blur="buscarVendedor()" placeholder="CPF/CNPJ" ng-model="vendedorLocal.cpfCnpj">
+                                            <input type="hidden" ng-model="vendedorLocal.pessoaId">
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            <input type="text" class="form-control" readonly ng-model="vendedorLocal.nome">
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center align-items-center">                                        
+                                        <button type="submit" class="btn bg-blue ml-3" ng-click="adicionaVendedor()">Adicionar <i class="icon-add ml-2"></i></button>
+                                    </div>                                    
+                                    <div class="form-group row ml-3 mr-3">
+
+
+                                    </div>                                    
+
+                                    <div  class="form-group row ml-3 mr-3">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width: 65px" class="text-center">Ação</th>
+                                                        <th>Nome vendedor</th>
+                                                        <th>Documento</th>
+                                                        <th class="text-center">Tipo</th>
+
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="p in oportunidade.vendedores" >
+                                                        <td style="width:10%" >
+                                                            <a ng-click="editarVendedor($index)" class="list-icons-item text-primary-600"><i class="icon-pencil7"></i></a>
+                                                            <a ng-click="removerVendedor($index)" class="list-icons-item text-danger-600"><i class="icon-trash"></i></a>
+                                                        </td>
+                                                        <td >{{p.pessoaFisica.nome|| p.pessoaJuridica.nomeFantasia  }} </td>
+                                                        <td >{{p.pessoaFisica.cpf|| p.pessoaJuridica.cnpj  }} </td>
+                                                        <td class="text-center" ><p ng-bind-html="p.pessoaFisica.cpf | tipoPessoa"></p></td>  
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!--Fim Vendedores-->    
+
+                        <!--Inicio Bem Objeto-->
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="card-header header-elements-inline">
+                                    <h5 class="card-title">Dados do Bem Objeto</h5>
+                                </div>
+
+
+                                <div class="card-body">
+
+                                    <div class="form-group row ml-3 mr-3">
+                                        <div class="col-lg-6">
+                                            <div class="row">
+                                                <label class="col-md-4 col-form-label">Finalidade </label>
+                                                <div class="col-md-8">
+                                                    <select class="form-control" ng-model="bemObjeto.finalidade">
+                                                        <option value="">Selecione</option>
+                                                        <option value="Moradia">Moradia</option>
+                                                        <option value="Veraneio">Veraneio</option>
+                                                        <option value="Trabalho">Trabalho</option>
+                                                        <option value="Investimento">Investimento</option>
+                                                        <option value="Não definido">Não definido</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <div class="row">
+                                                <label class="col-md-4 col-form-label">Território </label>
+                                                <div class="col-md-8">                                                    
+                                                    <select class="form-control" ng-model="bemObjeto.territorio">
+                                                        <option value="">Selecione</option>
+                                                        <option value="Território urbano">Território urbano</option>
+                                                        <option value="Território rural">Território rural</option>
+                                                        <option value="Território marítimo">Território marítimo</option>
+                                                        <option value="Território indígena">Território indígena</option>
+                                                        <option value="Não definido">Não definido</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row ml-3 mr-3">
+                                        <div class="col-lg-6">
+                                            <div class="row">
+                                                <label class="col-md-4 col-form-label">Endereço </label>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control" placeholder="Endereço" ng-model="bemObjeto.endereco">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <div class="row">
+                                                <label class="col-md-4 col-form-label">Município </label>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control" placeholder="Município" ng-model="bemObjeto.unicipio">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group row ml-3 mr-3">
+                                        <div class="col-lg-6">
+                                            <div class="row">
+                                                <label class="col-md-4 col-form-label">Nº Matrícula </label>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control" placeholder="Nº Matrícula" ng-model="bemObjeto.numMatricula">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <div class="row">
+                                                <label class="col-md-4 col-form-label">Cartório </label>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control" placeholder="Cartório" ng-model="bemObjeto.cartorio">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row ml-3 mr-3">
+                                        <div class="col-lg-6">
+                                            <div class="row">
+                                                <label class="col-md-4 col-form-label">Vagas de garagem </label>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control" placeholder="Vagas de garagem" ng-model="bemObjeto.numVagasGaragem">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <div class="row">
+                                                <label class="col-md-4 col-form-label">Nº de matrícula </label>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control" placeholder="Nº de matrícula" ng-model="bemObjeto.numMatriculaVagasGaragem">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group row ml-3 mr-3">
+                                        <div class="col-lg-6">
+                                            <div class="row">
+                                                <label class="col-md-4 col-form-label">IPTU </label>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control" placeholder="IPTU" ng-model="bemObjeto.numIptu">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <div class="row">
+                                                <label class="col-md-4 col-form-label">Área constr. </label>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control" placeholder="Área constr." ng-model="bemObjeto.areaConstruida">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row ml-3 mr-3">
+                                        <div class="col-lg-6">
+                                            <div class="row">
+                                                <label class="col-md-4 col-form-label">Tipo alienação </label>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control" placeholder="Tipo alienação" ng-model="bemObjeto.tipoAlienacao">
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+
+                                </div>
+                                <div class="d-flex justify-content-center align-items-center">                                        
+                                    <button type="submit" class="btn bg-blue ml-3" ng-click="adicionaBemObjeto()">Adicionar <i class="icon-add ml-2"></i></button>
+                                </div>                                  
+                                <div class="form-group row ml-3 mr-3">
+
+
+                                </div>                                    
+
+                                <div  class="form-group row ml-3 mr-3">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 65px" class="text-center">Ação</th>
+                                                    <th>Finalidade</th>
+                                                    <th>Território</th>
+                                                    <th>Endereço</th>                               
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="p in oportunidade.bens" >
+                                                    <td style="width:10%" >
+                                                        <a ng-click="editarBemObjeto($index)" class="list-icons-item text-primary-600"><i class="icon-pencil7"></i></a>
+                                                        <a ng-click="removerBemObjeto($index)" class="list-icons-item text-danger-600"><i class="icon-trash"></i></a>
+                                                    </td>
+                                                    <td >{{p.finalidade}} </td>
+                                                    <td >{{p.territorio}} </td>
+                                                    <td >{{p.endereco}} </td>                                                    
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>                                 
+
+                            </div>
+                        </div>
+                        <!--Fim Bem Objeto--> 
+
+
+                        <!--Inicio Procuradores-->
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="card-header header-elements-inline">
+                                    <h5 class="card-title">Procuradores</h5>
+                                </div>
+
+
+                                <div class="card-body">
+
+                                    <div  class="form-group row ml-3 mr-3">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width: 300px">Outorgante</th>
+                                                        <th class="text-center">Outorgado</th>
+
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="p in oportunidade.proponentes" >
+
+                                                        <td >{{p.pessoaFisica.nome|| p.pessoaJuridica.nomeFantasia  }} </td>
+                                                       
+                                                        
+                                                        <td class="text-center" >
+                                                            <div class="form-group row">                                                                
+                                                                <div class="col-md-4">
+                                                                    <input type="text" class="form-control" id="doc-procurador" ng-blur="buscaProcurador($index, p.pessoaFisica.id)" placeholder="CPF"  ng-model="procuradoresLocal[$index].outorgado.cpf">
+                                                                    
+                                                                </div>
+
+                                                                <div class="col-md-8">
+                                                                    <input type="text" class="form-control" readonly ng-model="procuradoresLocal[$index].outorgado.nome">
+                                                                </div>
+                                                            </div>
+
+                                                        </td> 
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!--Fim Procuradores-->                          
+
+
+                        <div class="text-right mb-3">
+                            <button type="submit" ng-click="save()" class="btn bg-blue-800 mr-3">Salvar <i class="icon-paperplane ml-2"></i>
+                            </button>
+                            <!-- Float Bottom right menu -->
+                            <ul class="fab-menu fab-menu-fixed fab-menu-bottom-right">
+                                <li>
+                                    <a ng-click="save()" class="fab-menu-btn btn bg-blue-800 btn-float rounded-round btn-icon">
+                                        <i class="fab-icon-open icon-paperplane"></i>
+                                    </a>
+
+                                </li>
+
+                            </ul>
+                            <!-- /bottom right menu -->
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /content area -->

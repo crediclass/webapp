@@ -56,6 +56,18 @@ public class Oportunidade implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "oportunidade_id")
     private List<Proponente> proponentes = new ArrayList<>();
+        
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "oportunidade_id")
+    private List<Vendedor> vendedores = new ArrayList<>();
+    
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "oportunidade_id")
+    private List<BemObjeto> bens = new ArrayList<>();
+    
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "oportunidade_id")
+    private List<Procurador> procuradores = new ArrayList<>();
 
     @Override
     public int hashCode() {

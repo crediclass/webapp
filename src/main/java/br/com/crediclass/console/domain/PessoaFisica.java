@@ -5,9 +5,8 @@
  */
 package br.com.crediclass.console.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -106,9 +105,23 @@ public class PessoaFisica implements Serializable {
     @JoinColumn(name = "pessoa_fisica_id")
     private List<DadosRendaPessoaFisica> dadosRenda = new ArrayList<>();
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "pessoaFisica", cascade = CascadeType.ALL)
     private List<Proponente> proponentes = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "pessoaFisica", cascade = CascadeType.ALL)
+    private List<Vendedor> vendedores = new ArrayList<>();
+    
+    
+    @JsonIgnore
+    @OneToMany(mappedBy = "outorgante", cascade = CascadeType.ALL)
+    private List<Procurador> outorgantes = new ArrayList<>();
+    
+    @JsonIgnore
+    @OneToMany(mappedBy = "outorgado", cascade = CascadeType.ALL)
+    private List<Procurador> outorgados = new ArrayList<>();
+
 
     @Override
     public int hashCode() {

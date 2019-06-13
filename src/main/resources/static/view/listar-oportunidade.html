@@ -20,7 +20,7 @@
         </div>
         <div class="header-elements d-none">
             <div class="breadcrumb justify-content-center">
-                <a href="/console/gi/cadastro/oportunidade" class="breadcrumb-elements-item">
+                <a href="/console/gi/oportunidade/cadastrar" class="breadcrumb-elements-item">
                     <i class="icon-user-plus mr-2"></i>
                     Novo
                 </a>
@@ -69,7 +69,7 @@
                                             <tbody>
                                                 <tr ng-repeat="p in oportunidades" >
                                                     <td style="width:10%" >
-                                                        <a href="/console/gi/cadastro/oportunidade" ng-click="$event.preventDefault(); editarOportunidade(p)" class="list-icons-item text-primary-600">
+                                                        <a href="/console/gi/oportunidade/cadastrar" ng-click="$event.preventDefault(); editarOportunidade(p)" class="list-icons-item text-primary-600">
                                                             <i class="icon-pencil7"></i>
                                                         </a>
                                                         <a href="#" class="list-icons-item text-danger-600"><i class="icon-trash"></i></a>
@@ -78,7 +78,7 @@
                                                     <td >{{p.proponentes[0].pessoaFisica.nome}}</td>                                                    
                                                     <td >{{p.origem}}</td>                                                    
                                                     <td >{{p.dono}}</td>
-                                                    <td >{{p.isAtivo}}</td>
+                                                     <td ><p ng-bind-html="p.isAtivo | isAtivoFiltro"></p></td>  
                                                 </tr>                                                
                                             </tbody>
                                         </table>
