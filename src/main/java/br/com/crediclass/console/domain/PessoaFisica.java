@@ -54,6 +54,7 @@ public class PessoaFisica implements Serializable {
     @ManyToOne
     @JoinColumn(name = "conjuge_id")
     private PessoaFisica conjuge;
+    
 
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "dd/MM/yyyy")
@@ -112,16 +113,26 @@ public class PessoaFisica implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "pessoaFisica", cascade = CascadeType.ALL)
     private List<Vendedor> vendedores = new ArrayList<>();
-    
-    
+
     @JsonIgnore
     @OneToMany(mappedBy = "outorgante", cascade = CascadeType.ALL)
     private List<Procurador> outorgantes = new ArrayList<>();
-    
+
     @JsonIgnore
     @OneToMany(mappedBy = "outorgado", cascade = CascadeType.ALL)
     private List<Procurador> outorgados = new ArrayList<>();
 
+    @OneToMany(mappedBy = "pessoaFisica")
+    @JsonIgnore
+    private List<DocumentosProponenteDados> documentoProponente;  
+    
+    @OneToMany(mappedBy = "pessoaFisica")
+    @JsonIgnore
+    private List<DocumentosVendedorDados> documentoVendedor; 
+    
+    @OneToMany(mappedBy = "pessoaFisica")
+    @JsonIgnore
+    private List<DocumentosProcuradorDados> documentoProcurador;    
 
     @Override
     public int hashCode() {

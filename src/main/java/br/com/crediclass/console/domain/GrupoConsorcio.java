@@ -69,6 +69,7 @@ public class GrupoConsorcio implements Serializable {
 
     @Column(nullable = true, columnDefinition = "DECIMAL(5,4)")
     private BigDecimal tx_adminitracao;
+    
 
     @Column(nullable = true, columnDefinition = "DECIMAL(5,4)")
     private BigDecimal tx_fundo_reserva;

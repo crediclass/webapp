@@ -131,6 +131,22 @@ app.config(function ($routeProvider, $locationProvider)
                 templateUrl: 'view/cadastro-tipo-categoria-profissional.html',
                 controller: 'cadastroCategoriaProfissionalController',
             })
+            .when('/console/gi/cadastro/cadastro-agrupamento-documento', {
+                templateUrl: 'view/cadastro-agrupamento-documento.html',
+                controller: 'cadastroAgrupamentoDocumentoController',
+            })
+            .when('/console/gi/cadastro/cadastro-documento-proponente', {
+                templateUrl: 'view/cadastro-documento-proponente.html',
+                controller: 'cadastroDocumentoProponenteController',
+            })
+            .when('/console/gi/cadastro/cadastro-documento-vendedor', {
+                templateUrl: 'view/cadastro-documento-vendedor.html',
+                controller: 'cadastroDocumentoVendedorController',
+            })
+            .when('/console/gi/cadastro/cadastro-documento-procurador', {
+                templateUrl: 'view/cadastro-documento-procurador.html',
+                controller: 'cadastroDocumentoProcuradorController',
+            })
             
             // Oportunidade
             

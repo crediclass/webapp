@@ -9,6 +9,8 @@ app.controller('grupoConsorcioController', function ($scope, DTOptionsBuilder, D
     $scope.parcela = {};
     $scope.parcelas = [];
     $scope.tipoParcelas = [];
+    
+    var adesaoTotal = 0;
 
 
     var data_inauguracao = angular.element("#data_inauguracao");
@@ -41,6 +43,8 @@ app.controller('grupoConsorcioController', function ($scope, DTOptionsBuilder, D
                 keyboard: false
             });
         }
+        
+        //console.log($scope.parcelas)
     };
 
 
@@ -50,33 +54,40 @@ app.controller('grupoConsorcioController', function ($scope, DTOptionsBuilder, D
 
     };
     $scope.insertParcela = function () {
-        let parcela_min = $scope.parcela.parcela;
-        let parcela_max = $scope.parcela.parcela;
-        parcela_min = parcela_min.split("-")[0];
-        parcela_max = parcela_max.split("-")[1];
+        updateTotal();
+        console.log($scope.parcela);
+        $scope.parcelas.push($scope.parcela);
+        //$scope.parcelas.sort(dynamicSort("parcela"));
+        $scope.parcela = {};
 
-        if (parseInt(parcela_min, 10) > parseInt($scope.grupo.prazo_remanescente, 10) && parseInt(parcela_max, 10) > parseInt($scope.grupo.prazo_remanescente, 10)) {
-            new Noty({
-                theme: ' alert alert-danger alert-styled-left p-0 bg-white',
-                text: 'Ops, O intervalo da parcela não pode ser maior que o prazo remanescente!',
-                type: 'error',
-                timeout: 1500,
-                closeWith: ['button']
-            }).show();
-        } else if (parseInt(parcela_max, 10) > parseInt($scope.grupo.prazo_remanescente, 10)) {
-            new Noty({
-                theme: ' alert alert-danger alert-styled-left p-0 bg-white',
-                text: 'Ops, O intervalo da parcela não pode ser maior que o prazo remanescente!',
-                type: 'error',
-                timeout: 1500,
-                closeWith: ['button']
-            }).show();
-        } else {
-            updateTotal();            
-            $scope.parcelas.push($scope.parcela);
-            $scope.parcelas.sort(dynamicSort("parcela"));            
-            $scope.parcela = {};
-        }
+//
+//        let parcela_min = $scope.parcela.parcela;
+//        let parcela_max = $scope.parcela.parcela;
+//        parcela_min = parcela_min.split("-")[0];
+//        parcela_max = parcela_max.split("-")[1];
+//
+//        if (parseInt(parcela_min, 10) > parseInt($scope.grupo.prazo_remanescente, 10) && parseInt(parcela_max, 10) > parseInt($scope.grupo.prazo_remanescente, 10)) {
+//            new Noty({
+//                theme: ' alert alert-danger alert-styled-left p-0 bg-white',
+//                text: 'Ops, O intervalo da parcela não pode ser maior que o prazo remanescente!',
+//                type: 'error',
+//                timeout: 1500,
+//                closeWith: ['button']
+//            }).show();
+//        } else if (parseInt(parcela_max, 10) > parseInt($scope.grupo.prazo_remanescente, 10)) {
+//            new Noty({
+//                theme: ' alert alert-danger alert-styled-left p-0 bg-white',
+//                text: 'Ops, O intervalo da parcela não pode ser maior que o prazo remanescente!',
+//                type: 'error',
+//                timeout: 1500,
+//                closeWith: ['button']
+//            }).show();
+//        } else {
+//            updateTotal();
+//            $scope.parcelas.push($scope.parcela);
+//            $scope.parcelas.sort(dynamicSort("parcela"));
+//            $scope.parcela = {};
+//        }
     };
 
     $scope.removeParcela = function (index) {
@@ -100,12 +111,14 @@ app.controller('grupoConsorcioController', function ($scope, DTOptionsBuilder, D
     updateTotal = function () {
         let parcela_adm = $scope.parcela.parcela;
         parcela_adm = (parcela_adm.split("-")[1] - parcela_adm.split("-")[0]) + 1;
-        $scope.parcela.intervalo_parcela = parcela_adm;
-        $scope.parcela.tx_administracao_mensal = $scope.parcela.tx_administracao / parcela_adm;
+        //$scope.parcela.intervalo_parcela = parcela_adm;
+
+        //$scope.parcela.tx_administracao_mensal = $scope.parcela.tx_administracao / parcela_adm;
         $scope.parcela.tx_fundo_comum = 1 / $scope.grupo.prazo_remanescente;
         $scope.parcela.tx_fundo_reserva = $scope.grupo.tx_fundo_reserva / $scope.grupo.prazo_remanescente;
 
-        $scope.parcela.tx_total = $scope.parcela.tx_administracao_mensal + $scope.parcela.tx_fundo_comum + $scope.parcela.tx_fundo_reserva;
+        //$scope.parcela.tx_total = $scope.parcela.tx_administracao_mensal + $scope.parcela.tx_fundo_comum + $scope.parcela.tx_fundo_reserva;
+        console.log($scope.parcela.tx_antecipacao);
     };
 
 
@@ -130,6 +143,7 @@ app.controller('grupoConsorcioController', function ($scope, DTOptionsBuilder, D
             url: baseUrl
         }).then(function (response) {
             $scope.grupos = response.data;
+//            console.log('carregou');
         }, function (response) {
             messageService.error();
         });
@@ -138,38 +152,52 @@ app.controller('grupoConsorcioController', function ($scope, DTOptionsBuilder, D
 
     $scope.saveComposicaoParcela = function () {
 
-        let array = $scope.grupo.parcelas;
-        let somaTxAdm = 0;
-        for (y in array) {
-            somaTxAdm += array[y].tx_administracao;
-        }
+        angular.element("#salvarComposicaoParcela").attr("data-dismiss", "modal");
+        $http({
+            method: 'POST',
+            url: baseUrl,
+            data: $scope.grupo
+        }).then(function (response) {
+            console.log($scope.grupo);
+            messageService.save();
+            $scope.findAll();
+            $scope.grupo = {};
+        }, function (response) {
+            messageService.error();
+        });
 
-        if (parseFloat(somaTxAdm) != parseFloat($scope.grupo.tx_adminitracao)) {
-            angular.element("#salvarComposicaoParcela").removeAttr("data-dismiss");
-            new Noty({
-                theme: ' alert alert-danger alert-styled-left p-0 bg-white',
-                text: 'Ops, Não foi possível salvar a composição da parcela. A a soma das taxas informadas precisa ser igual a taxa de administração total do grupo',
-                type: 'error',
-                timeout: 2500,
-                closeWith: ['button']
-            }).show();
-        } else {
-            //data-dismiss="modal"
-            angular.element("#salvarComposicaoParcela").attr("data-dismiss", "modal");
-            $http({
-                method: 'POST',
-                url: baseUrl,
-                data: $scope.grupo
-            }).then(function (response) {
-                console.log($scope.grupo);
-                messageService.save();
-                $scope.findAll();
-                $scope.grupo = {};
-            }, function (response) {
-                messageService.error();
-            });
-        }
-
+//        let array = $scope.grupo.parcelas;
+//        let somaTxAdm = 0;
+//        for (y in array) {
+//            somaTxAdm += array[y].tx_administracao;
+//        }
+//
+//        if (parseFloat(somaTxAdm) != parseFloat($scope.grupo.tx_adminitracao)) {
+//            angular.element("#salvarComposicaoParcela").removeAttr("data-dismiss");
+//            new Noty({
+//                theme: ' alert alert-danger alert-styled-left p-0 bg-white',
+//                text: 'Ops, Não foi possível salvar a composição da parcela. A a soma das taxas informadas precisa ser igual a taxa de administração total do grupo',
+//                type: 'error',
+//                timeout: 2500,
+//                closeWith: ['button']
+//            }).show();
+//        } else {
+//            //data-dismiss="modal"
+//            angular.element("#salvarComposicaoParcela").attr("data-dismiss", "modal");
+//            $http({
+//                method: 'POST',
+//                url: baseUrl,
+//                data: $scope.grupo
+//            }).then(function (response) {
+//                console.log($scope.grupo);
+//                messageService.save();
+//                $scope.findAll();
+//                $scope.grupo = {};
+//            }, function (response) {
+//                messageService.error();
+//            });
+//        }
+//
 
 
 
@@ -219,8 +247,7 @@ app.controller('grupoConsorcioController', function ($scope, DTOptionsBuilder, D
             .withOption('searching', true)
             .withOption('info', false)
             //.withOption('scrollX', true)
-            .withDOM('<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>')
-            .withLanguageSource('https://cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json');
+            .withDOM('<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>');
 
 
 

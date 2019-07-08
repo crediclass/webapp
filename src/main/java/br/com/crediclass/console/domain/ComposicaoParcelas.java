@@ -51,6 +51,13 @@ public class ComposicaoParcelas implements Serializable {
     @Column(nullable = true, columnDefinition = "DECIMAL(7,6)")
     private BigDecimal tx_fundo_reserva;
     
+    
+    @Column(nullable = true, columnDefinition = "DECIMAL(7,6)")
+    private BigDecimal tx_antecipacao; 
+    
+    @Column(nullable = true, columnDefinition = "DECIMAL(7,6)")
+    private BigDecimal tx_antecipacao_total ;    
+    
     @Column(nullable = true, columnDefinition = "DECIMAL(7,6)")
     private BigDecimal tx_total;
     

@@ -110,7 +110,11 @@ public class PessoaJuridica implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "pessoaJuridica", cascade = CascadeType.ALL)
-    private List<Vendedor> vendedores = new ArrayList<>();    
+    private List<Vendedor> vendedores = new ArrayList<>();   
+    
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "proponentePessoaJuridica")
+//    private List<DocumentosProponenteDados> proponentePessoaJuridica;    
 
     @Override
     public int hashCode() {

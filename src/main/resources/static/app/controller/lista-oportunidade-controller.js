@@ -1,11 +1,16 @@
-app.controller("listaOportunidadeController", function ($scope, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $http, $q, $location, messageService) {
+app.controller("listaOportunidadeController", function ($scope, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $http, $q, $location, messageService, oportunidadeService) {
 
+    $scope.collapseActive = false;
     $scope.oportunidade = {};
     $scope.oportunidades = [];
-
+    $scope.tempData = [];
+    $scope.ProponentesVendedoresProcuradores = [];
+    $scope.docsAgrupamento = [];
     $scope.vm = {};
     $scope.vm.dtInstance = {};
     $scope.vm.dtColumnDefs = [DTColumnDefBuilder.newColumnDef(0).notSortable()];
+
+
 
     $scope.vm.dtOptions = DTOptionsBuilder.newOptions()
             .withOption('paging', true)
@@ -44,6 +49,148 @@ app.controller("listaOportunidadeController", function ($scope, DTOptionsBuilder
 
     };
 
+    $scope.abrirModalProponentesVendedoresProcuradores = function (value) {
+
+        $http({
+            method: 'GET',
+            url: '/api/modulo-gi/proponentes-vendedores-procuradores/' + value.id
+        }).then(function (response) {
+            $scope.proponentesVendedoresProcuradores = response.data;
+            //console.log($scope.oportunidades);
+        }, function (response) {
+            messageService.error();
+        });
+
+        var formulario = angular.element("#modal_form_proponente_vendedores_procuradores");
+        if (formulario) {
+            formulario.modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+        }
+    };
+
+
+    $scope.abrirModalDocumentos = function (value) {
+
+        let pessoaId = value.codigo_pessoa;
+        var formulario = angular.element("#modal_form_proponente_vendedores_procuradores");
+        formulario.modal('toggle');
+
+        formulario = angular.element("#modal_form_documentos");
+        if (formulario) {
+            formulario.modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+
+
+        }
+
+
+
+        if (value.condicao == 'PROPONENTE' && value.tipo == 'PESSOA FÍSICA') {
+
+        $scope.docsAgrupamento = [];
+
+            // Chamada para preencher o banco com os dados para fixar os documentos a pessoa, executa somente se nunca foi executado.  
+            $http({
+                method: 'GET',
+                url: '/api/modulo-gi/doc-agrupamento/'
+            }).then(function (response) {
+                $scope.docsAgrupamento = response.data;
+
+
+                for (var i = 0, len = $scope.docsAgrupamento.length; i < len; i++) {
+                    for (var a = 0, counter = $scope.docsAgrupamento[i].documentosProponente.length; a < counter; a++) {
+                        if (!$scope.docsAgrupamento[i].documentosProponente[a].documento.length != 0) {
+
+                            //console.log('não temos documentos');
+                            json = {"documento": {"id": $scope.docsAgrupamento[i].documentosProponente[a].id}, "pessoaFisica": {"id": pessoaId}};
+                            $http({
+                                method: 'POST',
+                                url: 'api/modulo-gi/doc-proponente-dados',
+                                data: json
+                            });
+                        }
+
+                    }
+
+                }
+
+
+            });
+
+            oportunidadeService.getDocumentoProponentePessoa(pessoaId).then(function (response) {
+                for (var counter = 0; counter < response.data.length; counter++) {
+                    if ((typeof response.data[ counter ]) == "number") {
+                        response.data.splice(counter, 1);
+                        counter--;
+                    }
+                }
+
+                $scope.docsAgrupamento = response.data;
+                // console.log($scope.docsAgrupamento);
+
+            });
+
+
+
+
+        } else if (value.condicao == 'VENDEDOR' && value.tipo == 'PESSOA FÍSICA') {
+            $scope.docsAgrupamento = [];
+           
+        } else if (value.condicao == 'PROCURADOR' && value.tipo == 'PESSOA FÍSICA') {
+            $scope.docsAgrupamento = [];
+
+        } else if (value.condicao == 'PROPONENTE' && value.tipo == 'PESSOA JURÍDICA') {
+            $scope.docsAgrupamento = [];
+
+        }
+
+    };
+
+
+
+    $scope.savarDocumentos = function (value) {
+
+        let documento = {};
+        if ((typeof value.documento[0].documento) == "number")
+        {
+            documento.id = value.documento[0].documento;
+            delete value.documento[0].documento;
+            value.documento[0]['documento'] = documento;
+        }
+
+        $http({
+            method: 'POST',
+            url: '/api/modulo-gi/doc-proponente-dados',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            data: value.documento[0]
+        }).then(function (response) {
+
+        }, function (response) {
+
+        });
+
+    };
+
+    $scope.calculaValidade = function (value) {
+        //console.log(value);
+        // console.log(value.documento[0].dataEmissao);
+
+        var dt = new Date(value.documento[0].dataEmissao);
+        dt.setFullYear(dt.getFullYear() + value.validade);
+        value.documento[0].dataValidade = dt.toLocaleDateString();
+//        console.log(dt);
+//        console.log(value);
+
+
+    };
+
 
 
 
@@ -56,4 +203,7 @@ app.filter('isAtivoFiltro', function ($sce) {
 
         return $sce.trustAsHtml('<span class="badge badge-success">Ativo</span>');
     };
+
 });
+
+

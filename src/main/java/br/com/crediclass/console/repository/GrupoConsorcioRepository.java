@@ -32,6 +32,9 @@ public interface GrupoConsorcioRepository extends JpaRepository<GrupoConsorcio, 
     
     @Query("select g from GrupoConsorcio g join g.lances LanceConsorcio join LanceConsorcio.periodo PeriodoLances WHERE PeriodoLances.valor = :valor")
     List<GrupoConsorcio> findPeriodoLances(@Param("valor") String valor);
+    
+    @Query(value = "SELECT atualiza_taxas_composicao_parcela()", nativeQuery = true)
+    Integer atualizaTaxasComposicaoParcela();    
 
 
 }

@@ -12,6 +12,20 @@ app.factory('oportunidadeService', function ($http) {
         return $http.get(url);
     };
 
+    service.getDocumentoProponentePessoa = function (pessoaId) {
+        var url = 'api/modulo-gi/doc-agrupamento/doc-pessoa/' + pessoaId;
+        return $http.get(url);
+    };
+
+    service.getDocumentoProponente = function () {
+        var url = 'api/modulo-gi/doc-agrupamento';
+        return $http.get(url);
+    };
+    
+    service.get = function (url) {        
+        return $http.get(url);
+    };
+
 
     return service;
 });

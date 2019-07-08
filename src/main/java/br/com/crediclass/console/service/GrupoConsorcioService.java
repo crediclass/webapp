@@ -24,8 +24,10 @@ public class GrupoConsorcioService {
     private GrupoConsorcioRepository service;
 
     public GrupoConsorcio save(GrupoConsorcio grupo) {
-
-        return service.save(grupo);
+        GrupoConsorcio g = service.save(grupo);
+        int temp = atualizaTaxasComposicaoParcela();
+        System.out.println("Fabiano " + temp);
+        return g;
     }
 
     public GrupoConsorcio findById(Long id) {
@@ -51,6 +53,11 @@ public class GrupoConsorcioService {
         return service.findAdministradoraAndLances(administradora, periodo);
 
     }
+    
+    private Integer atualizaTaxasComposicaoParcela() {
+        return service.atualizaTaxasComposicaoParcela();
+    }    
+        
 
     public void deleteById(Long id) {
         service.deleteById(id);
