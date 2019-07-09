@@ -104,16 +104,21 @@ app.controller("listaOportunidadeController", function ($scope, DTOptionsBuilder
 
                 for (var i = 0, len = $scope.docsAgrupamento.length; i < len; i++) {
                     for (var a = 0, counter = $scope.docsAgrupamento[i].documentosProponente.length; a < counter; a++) {
-                        if (!$scope.docsAgrupamento[i].documentosProponente[a].documento.length != 0) {
+                        //console.log($scope.docsAgrupamento[i].documentosProponente[a].documento[0].id);
+                        json = {
+                            "id": $scope.docsAgrupamento[i].documentosProponente[a].documento[0].id,
+                            "documento": {
+                                "id": $scope.docsAgrupamento[i].documentosProponente[a].id},
+                            "pessoaFisica": {
+                                "id": pessoaId
+                            }
+                        };
 
-                            //console.log('não temos documentos');
-                            json = {"documento": {"id": $scope.docsAgrupamento[i].documentosProponente[a].id}, "pessoaFisica": {"id": pessoaId}};
-                            $http({
-                                method: 'POST',
-                                url: 'api/modulo-gi/doc-proponente-dados',
-                                data: json
-                            });
-                        }
+                        $http({
+                            method: 'POST',
+                            url: 'api/modulo-gi/doc-proponente-dados',
+                            data: json
+                        });
 
                     }
 
@@ -152,16 +157,20 @@ app.controller("listaOportunidadeController", function ($scope, DTOptionsBuilder
 
                 for (var i = 0, len = $scope.docsAgrupamento.length; i < len; i++) {
                     for (var a = 0, counter = $scope.docsAgrupamento[i].documentosVendedor.length; a < counter; a++) {
-                        if (!$scope.docsAgrupamento[i].documentosVendedor[a].documento.length != 0) {
+                        json = {
+                            "id": $scope.docsAgrupamento[i].documentosVendedor[a].documento[0].id,
+                            "documento": {
+                                "id": $scope.docsAgrupamento[i].documentosVendedor[a].id},
+                            "pessoaFisica": {
+                                "id": pessoaId
+                            }
+                        };
 
-                            //console.log('não temos documentos');
-                            json = {"documento": {"id": $scope.docsAgrupamento[i].documentosVendedor[a].id}, "pessoaFisica": {"id": pessoaId}};
-                            $http({
-                                method: 'POST',
-                                url: 'api/modulo-gi/doc-vendedor-dados',
-                                data: json
-                            });
-                        }
+                        $http({
+                            method: 'POST',
+                            url: 'api/modulo-gi/doc-vendedor-dados',
+                            data: json
+                        });
 
                     }
 
@@ -196,16 +205,20 @@ app.controller("listaOportunidadeController", function ($scope, DTOptionsBuilder
 
                 for (var i = 0, len = $scope.docsAgrupamento.length; i < len; i++) {
                     for (var a = 0, counter = $scope.docsAgrupamento[i].documentosProcurador.length; a < counter; a++) {
-                        if (!$scope.docsAgrupamento[i].documentosProcurador[a].documento.length != 0) {
+                        json = {
+                            "id": $scope.docsAgrupamento[i].documentosProcurador[a].documento[0].id,
+                            "documento": {
+                                "id": $scope.docsAgrupamento[i].documentosProcurador[a].id},
+                            "pessoaFisica": {
+                                "id": pessoaId
+                            }
+                        };
 
-                            //console.log('não temos documentos');
-                            json = {"documento": {"id": $scope.docsAgrupamento[i].documentosProcurador[a].id}, "pessoaFisica": {"id": pessoaId}};
-                            $http({
-                                method: 'POST',
-                                url: 'api/modulo-gi/doc-procurador-dados',
-                                data: json
-                            });
-                        }
+                        $http({
+                            method: 'POST',
+                            url: 'api/modulo-gi/doc-procurador-dados',
+                            data: json
+                        });
 
                     }
 
