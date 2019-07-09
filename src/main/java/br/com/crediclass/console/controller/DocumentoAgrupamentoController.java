@@ -37,16 +37,16 @@ public class DocumentoAgrupamentoController {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
     @GetMapping(path = "doc-pessoa/{userId}")
-    public ResponseEntity<?> findByDocumentosProponenteDocumentoPessoaFisica(@PathVariable Long userId) {
-        return new ResponseEntity<>(service.findByDocumentosProponenteDocumentoPessoaFisica(userId), HttpStatus.OK);
+    public ResponseEntity<?> findByDocumentosProponenteDocumentoPessoaFisicaId(@PathVariable Long userId) {
+        return new ResponseEntity<>(service.findByDocumentosProponenteDocumentoPessoaFisicaId(userId), HttpStatus.OK);
     }
     @GetMapping(path = "doc-vendedor/{userId}")
-    public ResponseEntity<?> findByDocumentosVendedorDocumentoPessoaFisica(@PathVariable Long userId) {
-        return new ResponseEntity<>(service.findByDocumentosProponenteDocumentoPessoaFisica(userId), HttpStatus.OK);
+    public ResponseEntity<?> findByDocumentosVendedorDocumentoPessoaFisicaId(@PathVariable Long userId) {
+        return new ResponseEntity<>(service.findByDocumentosVendedorDocumentoPessoaFisicaId(userId), HttpStatus.OK);
     }
     @GetMapping(path = "doc-procurador/{userId}")
-    public ResponseEntity<?> findByDocumentosProcuradorDocumentoPessoaFisica(@PathVariable Long userId) {
-        return new ResponseEntity<>(service.findByDocumentosProponenteDocumentoPessoaFisica(userId), HttpStatus.OK);
+    public ResponseEntity<?> findByDocumentosProcuradorDocumentoPessoaFisicaId(@PathVariable Long userId) {
+        return new ResponseEntity<>(service.findByDocumentosProcuradorDocumentoPessoaFisicaId(userId), HttpStatus.OK);
     }
 
     @GetMapping(path = "/{userId}") // call ... api/consorcio/indexadores/1

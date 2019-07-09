@@ -91,7 +91,8 @@ app.controller("listaOportunidadeController", function ($scope, DTOptionsBuilder
 
         if (value.condicao == 'PROPONENTE' && value.tipo == 'PESSOA FÍSICA') {
 
-        $scope.docsAgrupamento = [];
+            $scope.docsAgrupamento = [];
+            console.log('proponente');
 
             // Chamada para preencher o banco com os dados para fixar os documentos a pessoa, executa somente se nunca foi executado.  
             $http({
@@ -139,9 +140,92 @@ app.controller("listaOportunidadeController", function ($scope, DTOptionsBuilder
 
         } else if (value.condicao == 'VENDEDOR' && value.tipo == 'PESSOA FÍSICA') {
             $scope.docsAgrupamento = [];
-           
+            console.log('vendedor');
+
+            // Chamada para preencher o banco com os dados para fixar os documentos a pessoa, executa somente se nunca foi executado.  
+            $http({
+                method: 'GET',
+                url: '/api/modulo-gi/doc-agrupamento/'
+            }).then(function (response) {
+                $scope.docsAgrupamento = response.data;
+
+
+                for (var i = 0, len = $scope.docsAgrupamento.length; i < len; i++) {
+                    for (var a = 0, counter = $scope.docsAgrupamento[i].documentosVendedor.length; a < counter; a++) {
+                        if (!$scope.docsAgrupamento[i].documentosVendedor[a].documento.length != 0) {
+
+                            //console.log('não temos documentos');
+                            json = {"documento": {"id": $scope.docsAgrupamento[i].documentosVendedor[a].id}, "pessoaFisica": {"id": pessoaId}};
+                            $http({
+                                method: 'POST',
+                                url: 'api/modulo-gi/doc-vendedor-dados',
+                                data: json
+                            });
+                        }
+
+                    }
+
+                }
+
+
+            });
+
+            oportunidadeService.getDocumentoVendedorPessoa(pessoaId).then(function (response) {
+                for (var counter = 0; counter < response.data.length; counter++) {
+                    if ((typeof response.data[ counter ]) == "number") {
+                        response.data.splice(counter, 1);
+                        counter--;
+                    }
+                }
+
+                $scope.docsAgrupamento = response.data;
+                // console.log($scope.docsAgrupamento);
+
+            });
+
         } else if (value.condicao == 'PROCURADOR' && value.tipo == 'PESSOA FÍSICA') {
             $scope.docsAgrupamento = [];
+
+            // Chamada para preencher o banco com os dados para fixar os documentos a pessoa, executa somente se nunca foi executado.  
+            $http({
+                method: 'GET',
+                url: '/api/modulo-gi/doc-agrupamento/'
+            }).then(function (response) {
+                $scope.docsAgrupamento = response.data;
+
+
+                for (var i = 0, len = $scope.docsAgrupamento.length; i < len; i++) {
+                    for (var a = 0, counter = $scope.docsAgrupamento[i].documentosProcurador.length; a < counter; a++) {
+                        if (!$scope.docsAgrupamento[i].documentosProcurador[a].documento.length != 0) {
+
+                            //console.log('não temos documentos');
+                            json = {"documento": {"id": $scope.docsAgrupamento[i].documentosProcurador[a].id}, "pessoaFisica": {"id": pessoaId}};
+                            $http({
+                                method: 'POST',
+                                url: 'api/modulo-gi/doc-procurador-dados',
+                                data: json
+                            });
+                        }
+
+                    }
+
+                }
+
+
+            });
+
+            oportunidadeService.getDocumentoProcuradorPessoa(pessoaId).then(function (response) {
+                for (var counter = 0; counter < response.data.length; counter++) {
+                    if ((typeof response.data[ counter ]) == "number") {
+                        response.data.splice(counter, 1);
+                        counter--;
+                    }
+                }
+
+                $scope.docsAgrupamento = response.data;
+                // console.log($scope.docsAgrupamento);
+
+            });
 
         } else if (value.condicao == 'PROPONENTE' && value.tipo == 'PESSOA JURÍDICA') {
             $scope.docsAgrupamento = [];

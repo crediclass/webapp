@@ -18,28 +18,63 @@ import org.springframework.stereotype.Repository;
  *
  * @author Fabiano Fernandes <fabiano.fernandes at crediclass.com.br>
  */
-
 @Repository
 public interface DocumentoAgrupamentoRepository extends JpaRepository<DocumentoAgrupamento, Long> {
+
     List<DocumentoAgrupamento> findByOrderByOrdenamentoAsc();
-    
-   
-    @Query("SELECT c "
-            + "FROM DocumentoAgrupamento as c "
-            + "JOIN c.documentosProponente DocumentosProponente "
-            + "JOIN DocumentosProponente.documento DocumentosProponenteDados "
-            + "JOIN DocumentosProponenteDados.pessoaFisica PessoaFisica  "
-            + "WHERE PessoaFisica.id = :pessoa")
+
+    @Query(value = "SELECT\n"
+            + "A.id,\n"
+            + "A.nome_agrupamento,\n"
+            + "A.ordenamento,\n"
+            + "V.id,\n"
+            + "V.descricao,\n"
+            + "V.ordenamento,\n"
+            + "V.validade,\n"
+            + "V.agrupamento_id,\n"
+            + "D.id,\n"
+            + "D.data_emissao,\n"
+            + "D.data_recimento,\n"
+            + "D.data_validade,\n"
+            + "D.observacoes,\n"
+            + "D.documento_id,\n"
+            + "D.pessoa_fisica_id,\n"
+            + "P.id \n"
+            + "FROM\n"
+            + "console_docs_agrupamento AS A\n"
+            + "RIGHT JOIN console_docs_proponente AS V ON V.agrupamento_id = A.id\n"
+            + "RIGHT JOIN console_docs_proponente_dados AS D ON D.documento_id = V.id\n"
+            + "INNER JOIN console_pessoa_fisica AS P ON D.pessoa_fisica_id = P.id \n"
+            + "WHERE\n"
+            + "P.id = 1", nativeQuery = true)
     List<DocumentoAgrupamento> findByDocumentosProponenteDocumentoPessoaFisicaId(@Param("pessoa") Long pessoa);
-    
-    @Query("SELECT c "
-            + "FROM DocumentoAgrupamento as c "
-            + "JOIN c.documentosVendedor DocumentosVendedor "
-            + "JOIN DocumentosVendedor.documento DocumentosVendedorDados "
-            + "JOIN DocumentosVendedorDados.pessoaFisica PessoaFisica  "
-            + "WHERE PessoaFisica.id = :pessoa")
+
+    @Query(value = "SELECT\n"
+            + "A.id,\n"
+            + "A.nome_agrupamento,\n"
+            + "A.ordenamento,\n"
+            + "V.id,\n"
+            + "V.descricao,\n"
+            + "V.ordenamento,\n"
+            + "V.validade,\n"
+            + "V.agrupamento_id,\n"
+            + "D.id,\n"
+            + "D.data_emissao,\n"
+            + "D.data_recimento,\n"
+            + "D.data_validade,\n"
+            + "D.observacoes,\n"
+            + "D.documento_id,\n"
+            + "D.pessoa_fisica_id,\n"
+            + "P.id \n"
+            + "FROM\n"
+            + "console_docs_agrupamento AS A\n"
+            + "RIGHT JOIN console_docs_vendedor AS V ON V.agrupamento_id = A.id\n"
+            + "RIGHT JOIN console_docs_vendedor_dados AS D ON D.documento_id = V.id\n"
+            + "INNER JOIN console_pessoa_fisica AS P ON D.pessoa_fisica_id = P.id \n"
+            + "WHERE\n"
+            + "P.id = :pessoa", nativeQuery = true)
     List<DocumentoAgrupamento> findByDocumentosVendedorDocumentoPessoaFisicaId(@Param("pessoa") Long pessoa);
-    
+
     @Query("SELECT c "
             + "FROM DocumentoAgrupamento as c "
             + "JOIN c.documentosProcurador DocumentosProcurador "
@@ -47,12 +82,8 @@ public interface DocumentoAgrupamentoRepository extends JpaRepository<DocumentoA
             + "JOIN DocumentosProcuradorDados.pessoaFisica PessoaFisica  "
             + "WHERE PessoaFisica.id = :pessoa")
     List<DocumentoAgrupamento> findByDocumentosProcuradorDocumentoPessoaFisicaId(@Param("pessoa") Long pessoa);
-    
+
     @Query("SELECT c.id as  id, c.ordenamento as ordenamento, c.nomeAgrupamento as nomeAgrupamento FROM DocumentoAgrupamento as c ORDER BY 2")
     List<DocumentoAgrupamento> listarTodos();
-    
-    
-    
-    
 
 }

@@ -39,7 +39,7 @@ public class DocumentoAgrupamentoService {
         return service.findByOrderByOrdenamentoAsc();
     }
 
-    public List<DocumentoAgrupamento> findByDocumentosProponenteDocumentoPessoaFisica(Long id) {
+    public List<DocumentoAgrupamento> findByDocumentosProponenteDocumentoPessoaFisicaId(Long id) {
         return service.findByDocumentosProponenteDocumentoPessoaFisicaId(id);
     }
     public List<DocumentoAgrupamento> findByDocumentosVendedorDocumentoPessoaFisicaId(Long id) {
