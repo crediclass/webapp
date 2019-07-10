@@ -220,6 +220,24 @@ app.controller("cadastroPessoaFisicaController", function ($scope, $http, $route
         }
 
     };
+    $scope.buscaCEPRenda = function () {
+        if ($scope.rendaPessoa.cep) {
+            $http({
+                method: 'GET',
+                url: 'https://viacep.com.br/ws/' + $scope.rendaPessoa.cep + '/json'
+            }).then(function (response) {
+                $scope.rendaPessoa.rua = response.data.logradouro;
+                $scope.rendaPessoa.bairro = response.data.bairro;
+                $scope.rendaPessoa.uf = response.data.uf;
+                $scope.rendaPessoa.cidade = response.data.localidade;
+            }, function (response) {
+
+            });
+        } else {
+            messageService.cepInvalido();
+        }
+
+    };
 
 
 

@@ -64,10 +64,31 @@
                                         </div>
                                     </div>
                                     <div class="form-group row ml-3 mr-3">
+                                        <label class="col-form-label col-lg-2">RG</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="rg"
+                                                   placeholder="RG" ng-model="pessoaFisica.rg">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row ml-3 mr-3">
+                                        <label class="col-form-label col-lg-2">Data Emissão RG</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="rg"
+                                                   placeholder="00/00/0000" ng-model="pessoaFisica.rgDataEmissao" ui-date-mask parse="false" >
+                                        </div>
+                                    </div>
+                                    <div class="form-group row ml-3 mr-3">
+                                        <label class="col-form-label col-lg-2">Orgão Emissor RG</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="rg"
+                                                   placeholder="Orgão Emissor RG" ng-model="pessoaFisica.rgOrgaoEmissor">
+                                        </div>
+                                    </div>                                    
+                                    <div class="form-group row ml-3 mr-3">
                                         <label class="col-form-label col-lg-2">Data nascimento</label>
                                         <div class="col-sm-10">
                                             <input type="text" class="form-control" id="data-nascimento" 
-                                                   placeholder="00/00/0000" ng-model="pessoaFisica.data_nascimento">
+                                                   placeholder="00/00/0000" ng-model="pessoaFisica.data_nascimento" ui-date-mask parse="false" >
                                         </div>
                                     </div>
                                     <div class="form-group row ml-3 mr-3">
@@ -94,6 +115,20 @@
                                         <div class="col-sm-10">
                                             <input type="text" class="form-control" id="nacionalidade" 
                                                    placeholder="Nacionalidade" ng-model="pessoaFisica.nacionalidade">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row ml-3 mr-3">
+                                        <label class="col-form-label col-lg-2">Naturalidade</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="nacionalidade" 
+                                                   placeholder="Naturalidade" ng-model="pessoaFisica.naturalidade">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row ml-3 mr-3">
+                                        <label class="col-form-label col-lg-2">Nome da mãe</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="nacionalidade" 
+                                                   placeholder="Nome da mãe" ng-model="pessoaFisica.nomeDaMae">
                                         </div>
                                     </div>
                                     <div class="form-group row ml-3 mr-3">
@@ -281,28 +316,101 @@
                                 <div class="card-body">
 
                                     <div class="form-group row ml-3 mr-3">
-                                        <label class="col-form-label col-lg-2">Cargo/Profissão</label>
-                                        <div class="col-sm-10">
+                                        <label class="col-form-label col-lg-2">Cargo</label>
+                                        <div class="col-md-4">
                                             <input type="text" class="form-control" id="cargo-profissao" 
                                                    placeholder="Cargo/Profissão" ng-model="rendaPessoa.profissao">
                                         </div>
-                                    </div>
-                                    <div class="form-group row ml-3 mr-3">
                                         <label class="col-form-label col-lg-2">Cat. Profissional</label>
-                                        <div class="col-sm-10">
+                                        <div class="col-md-4">
                                             <select class="custom-select" data-ng-options="a.descricao for a in categoriaProfissional track by a.id" ng-model="rendaPessoa.categoriaProfissional" >
                                                 <option value="">Selecione</option>
 
                                             </select>
+
                                         </div>
                                     </div>
                                     <div class="form-group row ml-3 mr-3">
+                                        <label class="col-form-label col-lg-2">Data de Admissão</label>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" id="cargo-profissao" 
+                                                   placeholder="00/00/0000" ng-model="rendaPessoa.dataDeAdmissao" ui-date-mask parse="false" >
+                                        </div>
                                         <label class="col-form-label col-lg-2">Valor da Renda</label>
-                                        <div class="col-sm-10">
+                                        <div class="col-md-4">
                                             <input type="text" class="form-control" id="valor-renda" 
                                                    placeholder="Valor da Renda" ng-model="rendaPessoa.renda" ui-money-mask>
                                         </div>
-                                    </div>                                    
+
+                                    </div>
+
+                                    <div class="form-group row ml-3 mr-3">
+                                        <label class="col-form-label col-lg-2">CNPJ, se empresário</label>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control"  
+                                                   placeholder="CNPJ, se empresário" ng-model="rendaPessoa.cnpj" ui-br-cnpj-mask>
+                                        </div>
+                                        <label class="col-form-label col-lg-2">Telefone comercial</label>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control"  
+                                                   placeholder="(xx) xxxxx-xxxx" ng-model="rendaPessoa.telefoneComercial" ui-br-phone-number-mask="areaCode">
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="form-group row ml-3 mr-3">
+                                        <label class="col-form-label col-lg-2">CEP</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="cep" 
+                                                   placeholder="CEP do endereço comercial" ng-blur="buscaCEPRenda()" ng-model="rendaPessoa.cep" ui-br-cep-mask>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row ml-3 mr-3">
+                                        <label class="col-form-label col-lg-2">Rua</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="rua" 
+                                                   placeholder="Rua do endereço comercial" ng-model="rendaPessoa.rua">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row ml-3 mr-3">
+                                        <label class="col-form-label col-lg-2">Número</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="numerpo" 
+                                                   placeholder="Número do endereço comercial" ng-model="rendaPessoa.numero">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row ml-3 mr-3">
+                                        <label class="col-form-label col-lg-2">Complemento</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="complemento" 
+                                                   placeholder="Complemento do endereço comercial" ng-model="rendaPessoa.complemento">
+                                        </div>
+                                    </div>  
+                                    <div class="form-group row ml-3 mr-3">
+                                        <label class="col-form-label col-lg-2">Bairro</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="bairro" 
+                                                   placeholder="Bairro do endereço comercial" ng-model="rendaPessoa.bairro">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row ml-3 mr-3">
+                                        <label class="col-form-label col-lg-2">Cidade</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="cidade" 
+                                                   placeholder="Cidade do endereço comercial" ng-model="rendaPessoa.cidade">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row ml-3 mr-3">
+                                        <label class="col-form-label col-lg-2">UF</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="uf" 
+                                                   placeholder="UF do endereço comercial" ng-model="rendaPessoa.uf">
+                                        </div>
+                                    </div>
+
+
+
                                     <!--                                    <div class="form-group row ml-3 mr-3">
                                                                             <label class="col-form-label col-lg-2">Comprovante</label>
                                                                             <div class="col-sm-10">
@@ -432,7 +540,7 @@
                             </div>
                         </div>
                         <!--Fim aplicações financeiras -->
-                        
+
                         <!--Inicio patrimônio -->
                         <div class="card">
                             <div class="card-block">

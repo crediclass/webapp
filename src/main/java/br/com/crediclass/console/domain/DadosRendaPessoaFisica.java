@@ -5,8 +5,10 @@
  */
 package br.com.crediclass.console.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +19,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -38,6 +42,31 @@ public class DadosRendaPessoaFisica implements Serializable {
     private Long id;
 
     private String profissao;
+    
+    
+    private String cnpj;
+    
+    private String telefoneComercial;
+    
+    private String cep;
+    
+    private String rua;
+    
+    private Integer numero;
+    
+    private String complemento;
+    
+    private String bairro;
+    
+    private String cidade;
+    
+    private String uf;
+    
+
+    
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private Date dataDeAdmissao;    
 
     @ManyToOne
     @JoinColumn(name = "categoria_profissional_id")

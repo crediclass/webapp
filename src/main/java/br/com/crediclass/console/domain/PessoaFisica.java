@@ -47,6 +47,14 @@ public class PessoaFisica implements Serializable {
 
     private String cpf;
 
+    private String rg;
+
+    private String rgOrgaoEmissor;
+
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private Date rgDataEmissao;
+
     private String email;
 
     private String uf;
@@ -54,7 +62,6 @@ public class PessoaFisica implements Serializable {
     @ManyToOne
     @JoinColumn(name = "conjuge_id")
     private PessoaFisica conjuge;
-    
 
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "dd/MM/yyyy")
@@ -65,6 +72,13 @@ public class PessoaFisica implements Serializable {
     private EstadoCivil estadoCivil;
 
     private String nacionalidade;
+
+    private String naturalidade;
+    
+    
+    private String nomeDaMae;
+    
+    
 
 //    @ManyToOne
 //    @JoinColumn(name = "nacionalidade_id")
@@ -124,15 +138,15 @@ public class PessoaFisica implements Serializable {
 
     @OneToMany(mappedBy = "pessoaFisica")
     @JsonIgnore
-    private List<DocumentosProponenteDados> documentoProponente;  
-    
+    private List<DocumentosProponenteDados> documentoProponente;
+
     @OneToMany(mappedBy = "pessoaFisica")
     @JsonIgnore
-    private List<DocumentosVendedorDados> documentoVendedor; 
-    
+    private List<DocumentosVendedorDados> documentoVendedor;
+
     @OneToMany(mappedBy = "pessoaFisica")
     @JsonIgnore
-    private List<DocumentosProcuradorDados> documentoProcurador;    
+    private List<DocumentosProcuradorDados> documentoProcurador;
 
     @Override
     public int hashCode() {
