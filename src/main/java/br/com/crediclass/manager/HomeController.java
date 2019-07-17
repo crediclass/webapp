@@ -16,15 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
 
-    @GetMapping("/")
+    @GetMapping("/login")
     public String index() {
-        return "index.html";
+        return "view/login.html";
     }
-
-    @GetMapping("/home")
-    public String home() {
-        return "index.html";
-    }
+//
+//    @GetMapping("/home")
+//    public String home() {
+//        return "index.html";
+//    }
 
     @RequestMapping(value = "/console/**")
     public String redirect() {

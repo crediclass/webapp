@@ -45,6 +45,8 @@ public class Usuario implements Serializable {
     private Boolean enabled;
     @Column(name = "is_admin")
     private Boolean isAdmin;
+    private Boolean isDocumentoVencido;
+    private Boolean isGrupoVencido;
 
     @JoinTable(name = "console_permissao_x_usuario",
             joinColumns = {
@@ -52,7 +54,7 @@ public class Usuario implements Serializable {
             inverseJoinColumns = {
                 @JoinColumn(name = "id_permissao", referencedColumnName = "id")}
     )
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany()
     private Set<Permissao> permissao;
 
     @Override

@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Fabiano Fernandes <fabiano.fernandes at crediclass.com.br>
  */
 @RestController
-@RequestMapping("/console/administracao/grupo-usuarios")
+@RequestMapping("/api/administracao/grupo-usuarios")
 public class PermissaoController {
 
     @Autowired

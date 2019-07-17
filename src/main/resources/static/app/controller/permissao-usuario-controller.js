@@ -2,7 +2,7 @@ app.controller('permissaoUsuarioController', function ($scope, $http, messageSer
 
     $scope.permissao = {};
     $scope.permissoes = [];
-    var baseUrl = '/console/administracao/grupo-usuarios';
+    var baseUrl = '/api/administracao/grupo-usuarios';
 
     $scope.findAll = function () {
         $http({

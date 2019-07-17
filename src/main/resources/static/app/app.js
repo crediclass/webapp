@@ -171,9 +171,14 @@ app.config(function ($routeProvider, $locationProvider)
             })
 
 
-
-            .when('/contato', {
-                templateUrl: 'view/home.html',
+//
+//            .when('/contato', {
+//                templateUrl: 'view/home.html',
+//                controller: 'HomeCtrl',
+//            })
+//
+            .when('/login', {
+                templateUrl: 'view/login.html',
                 controller: 'HomeCtrl',
             })
 
