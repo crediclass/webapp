@@ -7,8 +7,8 @@
  */
 package br.com.crediclass.console.controller;
 
-import br.com.crediclass.console.domain.Proponente;
-import br.com.crediclass.console.service.ProponenteService;
+import br.com.crediclass.console.domain.DocumentosOperacao;
+import br.com.crediclass.console.service.DocumentosOperacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,39 +26,40 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Fabiano Fernandes <fabiano.fernandes at crediclass.com.br>
  */
 @RestController
-@RequestMapping("api/modulo-gi/proponente")
-public class ProponenteController {
+@RequestMapping("api/modulo-gi/doc-operacao")
+public class DocumentosOperacaoController {
 
     @Autowired
-    private ProponenteService service;
+    private DocumentosOperacaoService service;
 
     @GetMapping
     public ResponseEntity<?> findAll() {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
-    @GetMapping(path = "/documentos-vencidos")
-    public ResponseEntity<?> getDocumentosVencidos() {
-        return new ResponseEntity<>(service.getDocumentosVencidos(), HttpStatus.OK);
-    }
 
     @GetMapping(path = "/{userId}") // call ... api/consorcio/indexadores/1
-    public ResponseEntity<Proponente> findById(@PathVariable Long userId) {
+    public ResponseEntity<DocumentosOperacao> findById(@PathVariable Long userId) {
 
         return new ResponseEntity<>(service.findById(userId), HttpStatus.OK);
     }
+    
+    @GetMapping(path = "todos") // call ... api/consorcio/indexadores/1
+     public ResponseEntity<?> listarTodos() {
+        return new ResponseEntity<>(service.listarTodos(), HttpStatus.OK);
+    }    
 
     @PostMapping
-    public ResponseEntity<Proponente> save(@RequestBody Proponente value) {
+    public ResponseEntity<DocumentosOperacao> save(@RequestBody DocumentosOperacao value) {
         return new ResponseEntity<>(service.save(value), HttpStatus.OK);
     }
 
     @PutMapping
-    public ResponseEntity<Proponente> update(@RequestBody Proponente value) {
+    public ResponseEntity<DocumentosOperacao> update(@RequestBody DocumentosOperacao value) {
         return new ResponseEntity<>(service.save(value), HttpStatus.OK);
     }
 
     @DeleteMapping
-    public ResponseEntity<?> delete(@RequestBody Proponente value) {
+    public ResponseEntity<?> delete(@RequestBody DocumentosOperacao value) {
         service.delete(value);
         return new ResponseEntity<>(HttpStatus.OK);
     }

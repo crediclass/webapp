@@ -5,17 +5,22 @@
  */
 package br.com.crediclass.console.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.io.Serializable;
-import java.util.List;
+import java.util.Date;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,40 +32,46 @@ import lombok.Setter;
 @Setter
 
 @Entity
-@Table(name = "console_docs_agrupamento")
+@Table(name = "console_docs_bem_objeto_dados")
 @JsonIdentityInfo(
-        scope = DocumentoAgrupamento.class,
+        scope = DocumentosBemObjetoDados.class,
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
-public class DocumentoAgrupamento implements Serializable {
+public class DocumentosBemObjetoDados implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nomeAgrupamento;
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private Date dataRecimento;
 
-    private Integer ordenamento;
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private Date dataEmissao;
 
-    @OneToMany(mappedBy = "agrupamento")
-    private List<DocumentosVendedor> documentosVendedor;
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private Date dataValidade;
 
-    @OneToMany(mappedBy = "agrupamento")
-    private List<DocumentosProponente> documentosProponente;
+    @Column(columnDefinition = "TEXT")
+    private String observacoes;
 
-    @OneToMany(mappedBy = "agrupamento")
-    private List<DocumentosProcurador> documentosProcurador;
+    @ManyToOne
+    @JoinColumn(name = "documento_id")
+    private DocumentosBemObjeto documento;
+
     
-    @OneToMany(mappedBy = "agrupamento")
-    private List<DocumentosBemObjeto> documentosBemObjeto;
+    @ManyToOne
+    @JoinColumn(name = "oportunidade_id")
+    private Oportunidade oportunidade;    
     
-    @OneToMany(mappedBy = "agrupamento")
-    private List<DocumentosOperacao> documentosOperacao;
-
+   
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 13 * hash + Objects.hashCode(this.id);
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -75,7 +86,7 @@ public class DocumentoAgrupamento implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final DocumentoAgrupamento other = (DocumentoAgrupamento) obj;
+        final DocumentosBemObjetoDados other = (DocumentosBemObjetoDados) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }

@@ -48,6 +48,12 @@ public class DocumentoAgrupamentoService {
     public List<DocumentoAgrupamento> findByDocumentosProcuradorDocumentoPessoaFisicaId(Long id) {
         return service.findByDocumentosProcuradorDocumentoPessoaFisicaId(id);
     }
+    public List<DocumentoAgrupamento> findByDocumentosBemObjetoDocumentoOportunidadeId(Long id) {
+        return service.findByDocumentosBemObjetoDocumentoOportunidadeId(id);
+    }
+    public List<DocumentoAgrupamento> findByDocumentosOperacaoDocumentoOportunidadeId(Long id) {
+        return service.findByDocumentosOperacaoDocumentoOportunidadeId(id);
+    }
 
     public void deleteById(Long id) {
         service.deleteById(id);

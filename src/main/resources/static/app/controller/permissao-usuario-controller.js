@@ -10,6 +10,7 @@ app.controller('permissaoUsuarioController', function ($scope, $http, messageSer
             url: baseUrl
         }).then(function (response) {
             $scope.permissoes = response.data;
+            console.log($scope.permissoes);
         }, function (response) {
             messageService.error();
         });

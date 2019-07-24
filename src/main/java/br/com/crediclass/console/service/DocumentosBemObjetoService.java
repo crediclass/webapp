@@ -7,8 +7,8 @@
  */
 package br.com.crediclass.console.service;
 
-import br.com.crediclass.console.domain.Proponente;
-import br.com.crediclass.console.repository.ProponenteRepository;
+import br.com.crediclass.console.domain.DocumentosBemObjeto;
+import br.com.crediclass.console.repository.DocumentosBemObjetoRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,32 +19,33 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class ProponenteService {
+public class DocumentosBemObjetoService {
     
     @Autowired
-    private ProponenteRepository service;
+    private DocumentosBemObjetoRepository service;
     
     
-    public Proponente save(Proponente value){
+    public DocumentosBemObjeto save(DocumentosBemObjeto value){
         return service.save(value);
     }
     
-    public Proponente findById(Long id) {
+    public DocumentosBemObjeto findById(Long id) {
         return service.findById(id).get();
     }
     
-    public List<Proponente> findAll() {
-        return service.findAll();
+    public List<DocumentosBemObjeto> findAll() {
+        return service.findByOrderByOrdenamentoAsc();
     }
-    public List<?> getDocumentosVencidos() {
-        return service.getDocumentosVencidos();
-    }
+    
+    public List<DocumentosBemObjeto> listarTodos() {
+        return service.listarTodos();
+    }    
     
     public void deleteById(Long id) {
         service.deleteById(id);
     }
     
-    public void delete(Proponente value) {
+    public void delete(DocumentosBemObjeto value) {
         service.delete(value);
     }
     

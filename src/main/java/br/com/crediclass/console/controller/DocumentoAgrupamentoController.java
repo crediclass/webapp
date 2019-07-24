@@ -48,6 +48,14 @@ public class DocumentoAgrupamentoController {
     public ResponseEntity<?> findByDocumentosProcuradorDocumentoPessoaFisicaId(@PathVariable Long userId) {
         return new ResponseEntity<>(service.findByDocumentosProcuradorDocumentoPessoaFisicaId(userId), HttpStatus.OK);
     }
+    @GetMapping(path = "doc-bem-objeto/{userId}")
+    public ResponseEntity<?> findByDocumentosBemObjetoDocumentoOportunidadeId(@PathVariable Long userId) {
+        return new ResponseEntity<>(service.findByDocumentosBemObjetoDocumentoOportunidadeId(userId), HttpStatus.OK);
+    }
+    @GetMapping(path = "doc-operacao/{userId}")
+    public ResponseEntity<?> findByDocumentosOperacaoDocumentoOportunidadeId(@PathVariable Long userId) {
+        return new ResponseEntity<>(service.findByDocumentosOperacaoDocumentoOportunidadeId(userId), HttpStatus.OK);
+    }
 
     @GetMapping(path = "/{userId}") // call ... api/consorcio/indexadores/1
     public ResponseEntity<DocumentoAgrupamento> findById(@PathVariable Long userId) {

@@ -28,5 +28,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
     @Query("Select u from Usuario u where upper(u.nome) like concat('%',upper(:nome),'%')  or upper(u.email) like concat('%',upper(:email),'%') ")
     List<Usuario> findUsers(@Param("nome") String nome, @Param("email") String email);
+    
+    @Query(value = "SELECT * FROM console_usuario WHERE is_documento_vencido = 't'", nativeQuery = true)
+    List<Usuario> getUsuarioDocumentoVencidoNotificacao();    
 
 }

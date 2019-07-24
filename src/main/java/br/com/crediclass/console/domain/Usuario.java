@@ -10,7 +10,6 @@ package br.com.crediclass.console.domain;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,6 +19,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -39,7 +39,7 @@ public class Usuario implements Serializable {
     private String nome;
     private String email;
     private String username;
-    private String password;
+    @Setter(AccessLevel.NONE) private String password;
     private String telefone;
     private String foto;
     private Boolean enabled;
@@ -47,6 +47,17 @@ public class Usuario implements Serializable {
     private Boolean isAdmin;
     private Boolean isDocumentoVencido;
     private Boolean isGrupoVencido;
+    
+
+    public void setPassword(String password) {
+//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();        
+//        this.password = passwordEncoder.encode(password);
+        this.password = password;
+    }
+    
+    
+    
+    
 
     @JoinTable(name = "console_permissao_x_usuario",
             joinColumns = {

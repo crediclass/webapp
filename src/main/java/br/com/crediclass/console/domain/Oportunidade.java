@@ -7,6 +7,9 @@
  */
 package br.com.crediclass.console.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -35,6 +38,10 @@ import org.springframework.format.annotation.NumberFormat;
 
 @Entity
 @Table(name = "console_oportunidade")
+@JsonIdentityInfo(
+        scope = Oportunidade.class,
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Oportunidade implements Serializable {
 
     @Id
@@ -68,6 +75,10 @@ public class Oportunidade implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "oportunidade_id")
     private List<Procurador> procuradores = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "oportunidade")
+    @JsonIgnore
+    private List<DocumentosBemObjetoDados> documentoBemObjeto;    
 
     @Override
     public int hashCode() {

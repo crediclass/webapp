@@ -100,7 +100,7 @@ app.controller('usuarioController', function ($scope, $http, messageService) {
             url: '/api/administracao/grupo-usuarios'
         }).then(function (response) {
             $scope.permissoes = response.data;
-            //console.log($scope.permissoes);
+            console.log($scope.permissoes);
         }, function (response) {
             messageService.error();
         });

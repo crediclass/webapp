@@ -24,7 +24,7 @@ public class EmailController {
 
 
 
-    @RequestMapping(path = "/email-send", method = RequestMethod.GET)
+    @RequestMapping(path = "/api/enviar-notificacao", method = RequestMethod.GET)
     public void sendMail() {
         mailService.sendMail();
         

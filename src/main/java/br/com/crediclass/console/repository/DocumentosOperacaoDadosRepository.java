@@ -7,10 +7,8 @@
  */
 package br.com.crediclass.console.repository;
 
-import br.com.crediclass.console.domain.Proponente;
-import java.util.List;
+import br.com.crediclass.console.domain.DocumentosOperacaoDados;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -19,9 +17,7 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface ProponenteRepository extends JpaRepository<Proponente, Long> {
+public interface DocumentosOperacaoDadosRepository extends JpaRepository<DocumentosOperacaoDados, Long> {
     
-    @Query(value = "SELECT * FROM view_docs_vencidos WHERE periodo <= 5", nativeQuery = true)
-    List<?> getDocumentosVencidos();
-    
+       
 }

@@ -147,6 +147,14 @@ app.config(function ($routeProvider, $locationProvider)
                 templateUrl: 'view/cadastro-documento-procurador.html',
                 controller: 'cadastroDocumentoProcuradorController',
             })
+            .when('/console/gi/cadastro/cadastro-documento-bem-objeto', {
+                templateUrl: 'view/cadastro-documento-bem-objeto.html',
+                controller: 'cadastroDocumentoBemObjetoController',
+            })
+            .when('/console/gi/cadastro/cadastro-documento-operacao', {
+                templateUrl: 'view/cadastro-documento-operacao.html',
+                controller: 'cadastroDocumentoOperacaoController',
+            })
             
             // Oportunidade
             

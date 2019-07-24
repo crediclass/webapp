@@ -1,6 +1,9 @@
 app.controller("listaOportunidadeController", function ($scope, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $http, $q, $location, messageService, oportunidadeService) {
 
     $scope.collapseActive = false;
+    $scope.flagTipoDocumento;
+
+    $scope.objetoJSON = {};
     $scope.oportunidade = {};
     $scope.oportunidades = [];
     $scope.tempData = [];
@@ -73,7 +76,8 @@ app.controller("listaOportunidadeController", function ($scope, DTOptionsBuilder
 
     $scope.abrirModalDocumentos = function (value) {
 
-        let pessoaId = value.codigo_pessoa;
+        let pessoaId = value.codigo_pessoa
+        let oportunidadeId = value.oportunidade_id;
         var formulario = angular.element("#modal_form_proponente_vendedores_procuradores");
         formulario.modal('toggle');
 
@@ -83,194 +87,190 @@ app.controller("listaOportunidadeController", function ($scope, DTOptionsBuilder
                 backdrop: 'static',
                 keyboard: false
             });
-
-
         }
 
 
 
         if (value.condicao == 'PROPONENTE' && value.tipo == 'PESSOA FÍSICA') {
-
             $scope.docsAgrupamento = [];
-            console.log('proponente');
+            $scope.flagTipoDocumento = 'PROPONENTE';
+            //console.log('proponente');
 
             // Chamada para preencher o banco com os dados para fixar os documentos a pessoa, executa somente se nunca foi executado.  
-            $http({
-                method: 'GET',
-                url: '/api/modulo-gi/doc-agrupamento/'
-            }).then(function (response) {
-                $scope.docsAgrupamento = response.data;
+            var retorno = oportunidadeService.documentosProponente(oportunidadeId, pessoaId);
+            retorno.then(function (value) {
+                oportunidadeService.getDocumentoProponentePessoa(pessoaId).then(function (response) {
 
-
-                for (var i = 0, len = $scope.docsAgrupamento.length; i < len; i++) {
-                    for (var a = 0, counter = $scope.docsAgrupamento[i].documentosProponente.length; a < counter; a++) {
-                        //console.log($scope.docsAgrupamento[i].documentosProponente[a].documento[0].id);
-                        json = {
-                            "id": $scope.docsAgrupamento[i].documentosProponente[a].documento[0].id,
-                            "documento": {
-                                "id": $scope.docsAgrupamento[i].documentosProponente[a].id},
-                            "pessoaFisica": {
-                                "id": pessoaId
-                            }
-                        };
-
-                        $http({
-                            method: 'POST',
-                            url: 'api/modulo-gi/doc-proponente-dados',
-                            data: json
-                        });
-
+                    for (var counter = 0; counter < response.data.length; counter++) {
+                        if ((typeof response.data[ counter ]) == "number") {
+                            response.data.splice(counter, 1);
+                            counter--;
+                        }
                     }
-
-                }
-
-
+                    //console.log('2');
+                    $scope.docsAgrupamento = response.data;
+                    $scope.docsAgrupamento[0].documentosRepeater = response.data[0].documentosProponente;
+                    //console.log($scope.docsAgrupamento);
+                });
+                //console.log(value);
+            }, function (reason) {
+                //console.log(reason);
             });
 
-            oportunidadeService.getDocumentoProponentePessoa(pessoaId).then(function (response) {
-                for (var counter = 0; counter < response.data.length; counter++) {
-                    if ((typeof response.data[ counter ]) == "number") {
-                        response.data.splice(counter, 1);
-                        counter--;
-                    }
-                }
 
-                $scope.docsAgrupamento = response.data;
-                // console.log($scope.docsAgrupamento);
 
-            });
 
 
 
 
         } else if (value.condicao == 'VENDEDOR' && value.tipo == 'PESSOA FÍSICA') {
             $scope.docsAgrupamento = [];
-            console.log('vendedor');
-
+            //console.log('vendedor');
+            $scope.flagTipoDocumento = 'VENDEDOR';
             // Chamada para preencher o banco com os dados para fixar os documentos a pessoa, executa somente se nunca foi executado.  
-            $http({
-                method: 'GET',
-                url: '/api/modulo-gi/doc-agrupamento/'
-            }).then(function (response) {
-                $scope.docsAgrupamento = response.data;
+            var retorno = oportunidadeService.documentosVendedor(oportunidadeId, pessoaId);
+            retorno.then(function (value) {
+                oportunidadeService.getDocumentoVendedorPessoa(pessoaId).then(function (response) {
 
-
-                for (var i = 0, len = $scope.docsAgrupamento.length; i < len; i++) {
-                    for (var a = 0, counter = $scope.docsAgrupamento[i].documentosVendedor.length; a < counter; a++) {
-                        json = {
-                            "id": $scope.docsAgrupamento[i].documentosVendedor[a].documento[0].id,
-                            "documento": {
-                                "id": $scope.docsAgrupamento[i].documentosVendedor[a].id},
-                            "pessoaFisica": {
-                                "id": pessoaId
-                            }
-                        };
-
-                        $http({
-                            method: 'POST',
-                            url: 'api/modulo-gi/doc-vendedor-dados',
-                            data: json
-                        });
-
+                    for (var counter = 0; counter < response.data.length; counter++) {
+                        if ((typeof response.data[ counter ]) == "number") {
+                            response.data.splice(counter, 1);
+                            counter--;
+                        }
                     }
-
-                }
-
-
+                    //console.log('2');
+                    $scope.docsAgrupamento = response.data;
+                    $scope.docsAgrupamento[0].documentosRepeater = response.data[0].documentosVendedor;
+                    //console.log($scope.docsAgrupamento);
+                });
+                //console.log(value);
+            }, function (reason) {
+                //console.log(reason);
             });
 
-            oportunidadeService.getDocumentoVendedorPessoa(pessoaId).then(function (response) {
-                for (var counter = 0; counter < response.data.length; counter++) {
-                    if ((typeof response.data[ counter ]) == "number") {
-                        response.data.splice(counter, 1);
-                        counter--;
-                    }
-                }
 
-                $scope.docsAgrupamento = response.data;
-                // console.log($scope.docsAgrupamento);
-
-            });
 
         } else if (value.condicao == 'PROCURADOR' && value.tipo == 'PESSOA FÍSICA') {
             $scope.docsAgrupamento = [];
-
+            $scope.flagTipoDocumento = 'PROCURADOR';
             // Chamada para preencher o banco com os dados para fixar os documentos a pessoa, executa somente se nunca foi executado.  
-            $http({
-                method: 'GET',
-                url: '/api/modulo-gi/doc-agrupamento/'
-            }).then(function (response) {
-                $scope.docsAgrupamento = response.data;
+            var retorno = oportunidadeService.documentosProcurador(oportunidadeId, pessoaId);
+            retorno.then(function (value) {
+                oportunidadeService.getDocumentoProcuradorPessoa(pessoaId).then(function (response) {
 
-
-                for (var i = 0, len = $scope.docsAgrupamento.length; i < len; i++) {
-                    for (var a = 0, counter = $scope.docsAgrupamento[i].documentosProcurador.length; a < counter; a++) {
-                        json = {
-                            "id": $scope.docsAgrupamento[i].documentosProcurador[a].documento[0].id,
-                            "documento": {
-                                "id": $scope.docsAgrupamento[i].documentosProcurador[a].id},
-                            "pessoaFisica": {
-                                "id": pessoaId
-                            }
-                        };
-
-                        $http({
-                            method: 'POST',
-                            url: 'api/modulo-gi/doc-procurador-dados',
-                            data: json
-                        });
-
+                    for (var counter = 0; counter < response.data.length; counter++) {
+                        if ((typeof response.data[ counter ]) == "number") {
+                            response.data.splice(counter, 1);
+                            counter--;
+                        }
                     }
-
-                }
-
-
+                    //console.log('2');
+                    $scope.docsAgrupamento = response.data;
+                    $scope.docsAgrupamento[0].documentosRepeater = response.data[0].documentosProcurador;
+                    //console.log($scope.docsAgrupamento);
+                });
+                //console.log(value);
+            }, function (reason) {
+                //console.log(reason);
             });
 
-            oportunidadeService.getDocumentoProcuradorPessoa(pessoaId).then(function (response) {
-                for (var counter = 0; counter < response.data.length; counter++) {
-                    if ((typeof response.data[ counter ]) == "number") {
-                        response.data.splice(counter, 1);
-                        counter--;
-                    }
-                }
-
-                $scope.docsAgrupamento = response.data;
-                // console.log($scope.docsAgrupamento);
-
-            });
 
         } else if (value.condicao == 'PROPONENTE' && value.tipo == 'PESSOA JURÍDICA') {
             $scope.docsAgrupamento = [];
 
+
+        } else if (value.condicao == 'BEM OBJETO' && value.tipo == 'BEM OBJETO') {
+            $scope.docsAgrupamento = [];
+            $scope.flagTipoDocumento = 'BEM OBJETO';
+            // Chamada para preencher o banco com os dados para fixar os documentos a pessoa, executa somente se nunca foi executado.  
+            var retorno = oportunidadeService.documentosBemObjeto(oportunidadeId);
+            retorno.then(function (value) {
+                //console.log('OK');
+                oportunidadeService.getDocumentoBemObjetoOportunidade(oportunidadeId).then(function (response) {
+
+                    for (var counter = 0; counter < response.data.length; counter++) {
+                        if ((typeof response.data[ counter ]) == "number") {
+                            response.data.splice(counter, 1);
+                            counter--;
+                        }
+                    }
+                    //console.log('2');
+                    $scope.docsAgrupamento = response.data;
+                    console.log(response.data);
+                    $scope.docsAgrupamento[0].documentosRepeater = response.data[0].documentosBemObjeto;
+                    //console.log($scope.docsAgrupamento);
+                });
+                //console.log(value);
+            }, function (reason) {
+                //console.log(reason);
+            });
+
+
+        } else if (value.condicao == 'OPERACAO' && value.tipo == 'OPERACAO') {
+            $scope.flagTipoDocumento = 'OPERACAO';
+            $scope.docsAgrupamento = [];
+            // Chamada para preencher o banco com os dados para fixar os documentos a pessoa, executa somente se nunca foi executado.  
+            var retorno = oportunidadeService.documentosOperacao(oportunidadeId);
+            retorno.then(function (value) {
+                oportunidadeService.getDocumentoOperacaoOportunidade(oportunidadeId).then(function (response) {
+
+                    //console.log(response);
+                    $scope.docsAgrupamento = response.data;
+                    //console.log(response.data);
+                    $scope.docsAgrupamento[0].documentosRepeater = response.data[0].documentosOperacao;
+                    //console.log($scope.docsAgrupamento);
+                });
+                //console.log(value);
+            }, function (reason) {
+                //console.log(reason);
+            });
         }
 
     };
 
 
 
+
+
     $scope.savarDocumentos = function (value) {
+
+        //console.log($scope.flagTipoDocumento);
+        let url;
+        if ($scope.flagTipoDocumento == 'PROPONENTE') {
+            url = 'api/modulo-gi/doc-proponente-dados';
+        } else if ($scope.flagTipoDocumento == 'VENDEDOR') {
+            url = 'api/modulo-gi/doc-vendedor-dados';
+        } else if ($scope.flagTipoDocumento == 'PROCURADOR') {
+            url = 'api/modulo-gi/doc-procurador-dados'
+        } else if ($scope.flagTipoDocumento == 'BEM OBJETO') {
+            url = 'api/modulo-gi/doc-bem-objeto-dados'
+        } else if ($scope.flagTipoDocumento == 'OPERACAO') {
+            url = 'api/modulo-gi/doc-operacao-dados'
+        }
 
         let documento = {};
         if ((typeof value.documento[0].documento) == "number")
-        {
+        {            
             documento.id = value.documento[0].documento;
             delete value.documento[0].documento;
             value.documento[0]['documento'] = documento;
         }
 
+        //console.log(value);
+
         $http({
             method: 'POST',
-            url: '/api/modulo-gi/doc-proponente-dados',
+            url: url,
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             data: value.documento[0]
         }).then(function (response) {
-
+            //console.log('funfou');
         }, function (response) {
-
+            //console.log('não funfou');
+            //console.log(response);
         });
 
     };

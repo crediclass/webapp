@@ -74,6 +74,44 @@ public interface DocumentoAgrupamentoRepository extends JpaRepository<DocumentoA
             + "WHERE\n"
             + "P.id = :pessoa", nativeQuery = true)
     List<DocumentoAgrupamento> findByDocumentosVendedorDocumentoPessoaFisicaId(@Param("pessoa") Long pessoa);
+    
+    
+    @Query(value = "SELECT A.id, "
+            + "A.nome_agrupamento, "
+            + "A.ordenamento, "
+            + "V.ID, "
+            + "V.descricao, "
+            + "V.ordenamento, "
+            + "V.validade, "
+            + "D.ID, "
+            + "D.data_emissao, "
+            + "D.data_recimento, "
+            + "D.data_validade,"
+            + "D.observacoes, D.documento_id, D.oportunidade_id, P.ID "
+            + "FROM console_docs_agrupamento as A "
+            + "RIGHT JOIN console_docs_bem_objeto AS V ON V.agrupamento_id = A.id "
+            + "RIGHT JOIN console_docs_bem_objeto_dados AS D ON D.documento_id = V.id "
+            + "INNER JOIN console_oportunidade AS P ON D.oportunidade_id = P.ID WHERE P.ID = :oportunidade", nativeQuery = true)
+    List<DocumentoAgrupamento> findByDocumentosBemObjetoDocumentoOportunidadeId(@Param("oportunidade") Long oportunidade);
+    
+        @Query(value = "SELECT A.id, "
+            + "A.nome_agrupamento, "
+            + "A.ordenamento, "
+            + "V.ID, "
+            + "V.descricao, "
+            + "V.ordenamento, "
+            + "V.validade, "
+            + "D.ID, "
+            + "D.data_emissao, "
+            + "D.data_recimento, "
+            + "D.data_validade,"
+            + "D.observacoes, D.documento_id, D.oportunidade_id, P.ID "
+            + "FROM console_docs_agrupamento as A "
+            + "RIGHT JOIN console_docs_operacao AS V ON V.agrupamento_id = A.id "
+            + "RIGHT JOIN console_docs_operacao_dados AS D ON D.documento_id = V.id "
+            + "INNER JOIN console_oportunidade AS P ON D.oportunidade_id = P.ID WHERE P.ID = :oportunidade", nativeQuery = true)
+    List<DocumentoAgrupamento> findByDocumentosOperacaoDocumentoOportunidadeId(@Param("oportunidade") Long oportunidade);
+    
 
     @Query("SELECT c "
             + "FROM DocumentoAgrupamento as c "

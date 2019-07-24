@@ -33,7 +33,7 @@ app.controller("cadastroAgrupamentoDocumentoController", function ($scope, $http
 
     $scope.save = function () {
         delete $scope.agrupamentoDocumento.documentosProponente;
-        console.log($scope.agrupamentoDocumento);
+        //console.log($scope.agrupamentoDocumento);
         $http({
             method: 'POST',
             url: baseUrl,

@@ -40,6 +40,10 @@ public class UsuarioService {
     public List<Usuario> findAll() {
         return usuarioRepository.findAll();
     }
+    
+    public List<Usuario> getUsuarioDocumentoVencidoNotificacao() {
+        return usuarioRepository.getUsuarioDocumentoVencidoNotificacao();
+    }
 
     public void deleteById(Long id) {
         usuarioRepository.deleteById(id);

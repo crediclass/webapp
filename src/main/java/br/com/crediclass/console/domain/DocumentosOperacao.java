@@ -14,6 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Getter;
@@ -27,40 +29,35 @@ import lombok.Setter;
 @Setter
 
 @Entity
-@Table(name = "console_docs_agrupamento")
+@Table(name = "console_docs_operacao")
 @JsonIdentityInfo(
-        scope = DocumentoAgrupamento.class,
+        scope = DocumentosOperacao.class,
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
-public class DocumentoAgrupamento implements Serializable {
+public class DocumentosOperacao implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nomeAgrupamento;
+    private String descricao;
 
     private Integer ordenamento;
-
-    @OneToMany(mappedBy = "agrupamento")
-    private List<DocumentosVendedor> documentosVendedor;
-
-    @OneToMany(mappedBy = "agrupamento")
-    private List<DocumentosProponente> documentosProponente;
-
-    @OneToMany(mappedBy = "agrupamento")
-    private List<DocumentosProcurador> documentosProcurador;
     
-    @OneToMany(mappedBy = "agrupamento")
-    private List<DocumentosBemObjeto> documentosBemObjeto;
-    
-    @OneToMany(mappedBy = "agrupamento")
-    private List<DocumentosOperacao> documentosOperacao;
+    private Integer validade;
+
+
+    @ManyToOne
+    @JoinColumn(name = "agrupamento_id")
+    private DocumentoAgrupamento agrupamento;
+
+    @OneToMany(mappedBy = "documento")
+    private List<DocumentosOperacaoDados> documento;
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 13 * hash + Objects.hashCode(this.id);
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -75,7 +72,7 @@ public class DocumentoAgrupamento implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final DocumentoAgrupamento other = (DocumentoAgrupamento) obj;
+        final DocumentosOperacao other = (DocumentosOperacao) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
