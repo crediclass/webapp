@@ -48,6 +48,15 @@ public class OportunidadeController {
         return new ResponseEntity<>(service.save(value), HttpStatus.OK);
     }
 
+    @PostMapping("/piperun")
+    public ResponseEntity<Oportunidade> saveFromPiperun(@RequestBody Oportunidade value) {
+        Oportunidade opp = new Oportunidade();
+        opp.setId(4L);
+        System.out.println(value);
+
+        return new ResponseEntity<>(service.save(opp), HttpStatus.OK);
+    }
+
     @PutMapping
     public ResponseEntity<Oportunidade> update(@RequestBody Oportunidade value) {
         return new ResponseEntity<>(service.save(value), HttpStatus.OK);
