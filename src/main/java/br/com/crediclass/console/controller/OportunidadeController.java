@@ -8,6 +8,7 @@
 package br.com.crediclass.console.controller;
 
 import br.com.crediclass.console.domain.Oportunidade;
+import br.com.crediclass.console.domain.OportunidadePiperun;
 import br.com.crediclass.console.service.OportunidadeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -49,7 +50,7 @@ public class OportunidadeController {
     }
 
     @PostMapping("/piperun")
-    public ResponseEntity<Oportunidade> saveFromPiperun(@RequestBody Oportunidade value) {
+    public ResponseEntity<Oportunidade> saveFromPiperun(@RequestBody OportunidadePiperun value) {
         Oportunidade opp = new Oportunidade();
         opp.setId(4L);
         System.out.println(value);
