@@ -47,8 +47,12 @@ public class Oportunidade implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    private Long piperunId;
 
     private String titulo;
+    
+    private String hash;
 
     private String origem;
 
@@ -78,7 +82,9 @@ public class Oportunidade implements Serializable {
     
     @OneToMany(mappedBy = "oportunidade")
     @JsonIgnore
-    private List<DocumentosBemObjetoDados> documentoBemObjeto;    
+    private List<DocumentosBemObjetoDados> documentoBemObjeto;   
+    
+    
 
     @Override
     public int hashCode() {

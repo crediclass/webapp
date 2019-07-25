@@ -19,4 +19,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OportunidadeRepository extends JpaRepository<Oportunidade, Long> {
     
+    Oportunidade findByHash(String hash);
+    
 }
