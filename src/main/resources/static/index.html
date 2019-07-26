@@ -65,12 +65,12 @@
                             <span>Administrador</span>
                         </a>
 
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a href="#" class="dropdown-item"><i class="icon-user-plus"></i> Meu perfil</a>
+                        <div class="dropdown-menu dropdown-menu-right" ng-controller="menuUsuarioController">
+                            <a href="#" ng-click="$event.preventDefault(); editarPerfil()" class="dropdown-item"><i class="icon-user-plus"></i> Meu perfil</a>
                             <a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Mensagens <span class="badge badge-pill bg-blue ml-auto">58</span></a>
                             <div class="dropdown-divider"></div>
                             <a href="#" class="dropdown-item"><i class="icon-cog5"></i> Configurações</a>
-                            <a class="dropdown-item"><i class="icon-switch2"></i> Logout</a>
+                            <a ng-click="$event.preventDefault(); logout()" class="dropdown-item"><i class="icon-switch2"></i> Logout</a>
                         </div>
                     </li>
                 </ul>
@@ -342,6 +342,8 @@
         <script src="/app/controller/cadastro-documento-procurador.js" type="text/javascript"></script>
         <script src="/app/controller/cadastro-documento-bem-objeto.js" type="text/javascript"></script>
         <script src="/app/controller/cadastro-documento-operacao.js" type="text/javascript"></script>
+        <script src="/app/controller/menu-usuario-controller.js" type="text/javascript"></script>
+        <script src="/app/controller/editar-perfil-controller.js" type="text/javascript"></script>
         
         <script src="/app/service/authentication.js" type="text/javascript"></script>
 

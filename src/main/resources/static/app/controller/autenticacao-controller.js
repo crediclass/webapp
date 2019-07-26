@@ -1,27 +1,47 @@
-app.controller('autenticationController', function ($scope, $window, authAPI) {
-    $scope.error = false;
+app.controller('autenticationController', function ($rootScope, $scope, $http, $location, authAPI) {
+
     $scope.credentials = {};
 
-    var fnSuccess = function (response) {
-        console.log('funfou');
-        $scope.error = false;
-        //Logica de Redirecionamento
-        $window.location.href = '/home';
+    var authenticate = function (credentials, callback) {
 
-    };
+        var headers = credentials ? {authorization: "Basic "
+                    + btoa(credentials.username + ":" + credentials.password)
+        } : {};
 
-    var fnError = function (response) {
-        console.log('xiii deu erro');
-        console.log(response);
-        $scope.error = true;
+        $http({
+            method: 'GET',
+            url: '/user',
+            headers: headers
+        }).then(function (data) {
+            if (data.name) {
+                $rootScope.authenticated = true;
+            } else {
+                $rootScope.authenticated = false;
+            }
+            callback && callback();
+        }, function () {
+            $rootScope.authenticated = false;
+            callback && callback();
+        });
+
+    }
+    authenticate();
+
+    $scope.login = function () {
+        authenticate($scope.credentials, function () {
+            if ($rootScope.authenticated) {
+                $location.path("/");
+                $scope.error = false;
+            } else {
+                $location.path("/login");
+                $scope.error = true;
+            }
+        });
     };
 
     /**
      * Enviar para o servidor.
      */
-    $scope.login = function() {
-        
-        authAPI.authenticate($scope.credentials).then(fnSuccess, fnError);
-    };
+
 
 });

@@ -1,0 +1,84 @@
+<!-- Page header -->
+<div class="page-header page-header-light">
+    <div class="page-header-content header-elements-md-inline">
+        <div class="page-title d-flex">
+            <h4><i class="icon-users4 mr-2"></i> <span class="font-weight-semibold">Perfil</span> - Usuário</h4>
+
+        </div>
+    </div>
+
+    <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+        <div class="d-flex">
+            <div class="breadcrumb">
+                <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+                <a href="#" class="breadcrumb-item">Administração</a>
+                <a href="#" class="breadcrumb-item">Usuários</a>
+                <span class="breadcrumb-item active">Perfil</span>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- /page header -->
+<!-- Content area -->
+<div class="content" >
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title">Editar perfil</h5>
+                </div>
+                <form method="POST">
+                    <fieldset class="ml-3 mr-3">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-2">Nome</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="nome" 
+                                       placeholder="Nome completo" ng-model="usuario.nome">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 form-control-label">E-mail:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="email" 
+                                       placeholder="E-mail" ng-model="usuario.email">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 form-control-label">Usuário:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="username" 
+                                       placeholder="Usuário" ng-model="usuario.username">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 form-control-label">Senha:</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" id="password" 
+                                       placeholder="Senha" ng-model="usuario.password" maxlength="12">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 form-control-label">Telefone:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control tel-celular" id="telefone" 
+                                       placeholder="Telefone" ng-model="usuario.telefone" ui-br-phone-number-mask="areaCode">
+                            </div>
+                        </div>
+
+                          
+
+                    </fieldset>
+
+                    <div class="text-center mb-3">
+                        <button type="submit" ng-click="save()" class="btn btn-primary">Salvar <i class="icon-paperplane ml-2"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+<!-- /content area -->

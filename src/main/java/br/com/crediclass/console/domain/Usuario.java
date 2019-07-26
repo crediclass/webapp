@@ -23,6 +23,7 @@ import javax.persistence.Transient;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  *
@@ -54,9 +55,8 @@ public class Usuario implements Serializable {
     
 
     public void setPassword(String password) {
-//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();        
-//        this.password = passwordEncoder.encode(password);
-        this.password = password;
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();		
+        this.password =  passwordEncoder.encode(password);
     }
     
     

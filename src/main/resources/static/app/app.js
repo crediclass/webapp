@@ -7,7 +7,7 @@ var app = angular.module('app', [
     'ngAnimate',
     'datatables']);
 
-app.config(function ($routeProvider, $locationProvider)
+app.config(function ($routeProvider, $locationProvider, $httpProvider)
 {
     // remove o # da url
     $locationProvider.html5Mode(true);
@@ -30,6 +30,10 @@ app.config(function ($routeProvider, $locationProvider)
             .when('/console/administracao/grupo-usuario', {
                 templateUrl: 'view/permissao-usuario.html',
                 controller: 'permissaoUsuarioController',
+            })
+            .when('/console/editar-perfil/:usuarioId?', {
+                templateUrl: 'view/editar-perfil.html',
+                controller: 'editarPerfilController',
             })
 
             // Módulo Consórcio - Cadastro
@@ -63,16 +67,16 @@ app.config(function ($routeProvider, $locationProvider)
                 templateUrl: 'view/lance-consorcio.html',
                 controller: 'lanceConsorcioController',
             })
-                       
+
             // Módulo Consórcio - Análise
             .when('/console/consorcio/analise-de-grupo', {
                 templateUrl: 'view/analise-grupo-consorcio.html',
                 controller: 'analiseGrupoConsorcioController',
-            }) 
+            })
 
 
             // Módulo GI 
-            
+
             // Cadastro
 
             .when('/console/gi/cadastro/pessoa-fisica/:pessoaId?', {
@@ -86,15 +90,15 @@ app.config(function ($routeProvider, $locationProvider)
             .when('/console/gi/cadastro/pessoa-juridica/:pessoaId?', {
                 templateUrl: 'view/cadastro-pessoa-juridica.html',
                 controller: 'cadastroPessoaJuridicaController',
-            })            
+            })
             .when('/console/gi/cadastro/pessoa-juridica', {
                 templateUrl: 'view/cadastro-pessoa-juridica.html',
                 controller: 'cadastroPessoaJuridicaController',
             })
-           .when('/console/gi/listar/pessoa-juridica', {
+            .when('/console/gi/listar/pessoa-juridica', {
                 templateUrl: 'view/listar-pessoa-juridica.html',
                 controller: 'listaPessoaJuridicaController',
-            })            
+            })
             .when('/console/gi/cadastro/banco', {
                 templateUrl: 'view/cadastro-banco.html',
                 controller: 'cadastroBancoController',
@@ -155,20 +159,20 @@ app.config(function ($routeProvider, $locationProvider)
                 templateUrl: 'view/cadastro-documento-operacao.html',
                 controller: 'cadastroDocumentoOperacaoController',
             })
-            
+
             // Oportunidade
-            
+
             .when('/console/gi/oportunidade/cadastrar/:oportunidadeId?', {
                 templateUrl: 'view/cadastro-oportunidade.html',
                 controller: 'cadastroOportunidadeController',
             })
-                   
+
             .when('/console/gi/oportunidade/listar-oportunidade', {
                 templateUrl: 'view/listar-oportunidade.html',
                 controller: 'listaOportunidadeController',
-            })    
-            
-          
+            })
+
+
 
 
             // Módulo RH - Cadastro
@@ -192,6 +196,8 @@ app.config(function ($routeProvider, $locationProvider)
 
             // caso não seja nenhum desses, redirecione para a rota '/'
             .otherwise({redirectTo: '/'});
+
+    $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 });
 
 app.controller('HomeCtrl', function ($scope) {});
