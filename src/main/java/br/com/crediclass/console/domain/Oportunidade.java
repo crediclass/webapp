@@ -86,7 +86,10 @@ public class Oportunidade implements Serializable {
     
     
     public void adicionaProponente(Proponente proponente){
-        proponentes.add(proponente);
+        if(!proponentes.contains(proponente)){
+            proponentes.add(proponente);
+        }
+        
     }
     
     

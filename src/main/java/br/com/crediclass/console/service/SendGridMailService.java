@@ -45,7 +45,7 @@ public class SendGridMailService {
         String subject = "Sending with SendGrid is Fun";
         // Email to = new Email("contato@fabianofernandes.adm.br");
         Email to = new Email("naoresponder@crediclass.com.br");
-        List<?> documentos = service.getDocumentosVencidos();
+        //List<?> documentos = service.getDocumentosVencidos();
 
         Personalization p1 = new Personalization();
         List<Usuario> usuarios = usuarioService.getUsuarioDocumentoVencidoNotificacao();

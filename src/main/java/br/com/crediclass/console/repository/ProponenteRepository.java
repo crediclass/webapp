@@ -25,7 +25,8 @@ public interface ProponenteRepository extends JpaRepository<Proponente, Long> {
     @Query(value = "SELECT * FROM view_docs_vencidos WHERE periodo <= 5", nativeQuery = true)
     List<?> getDocumentosVencidos();
     
-    @Query(value = "SELECT * FROM console_proponente WHERE pessoa_fisica_id = 1 AND oportunidade_id = 1", nativeQuery = true)
+    @Query(value = "SELECT * FROM console_proponente WHERE pessoa_fisica_id = :pessoa_id AND oportunidade_id = :oportunidade_id", nativeQuery = true)
     public Proponente getPropontente(@Param("pessoa_id") Long pessoa_id, @Param("oportunidade_id") Long oportunidade_id);
+    
     
 }

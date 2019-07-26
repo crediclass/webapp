@@ -14,7 +14,6 @@ import br.com.crediclass.console.domain.Proponente;
 import br.com.crediclass.console.repository.OportunidadeRepository;
 import br.com.crediclass.console.repository.PessoaFisicaRepository;
 import br.com.crediclass.console.repository.ProponenteRepository;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +28,7 @@ public class OportunidadeService {
     @Autowired
     private OportunidadeRepository serviceOportunidade;
 
+    @Autowired
     private ProponenteRepository serviceProponente;
 
     @Autowired
@@ -51,12 +51,13 @@ public class OportunidadeService {
         oportunidade.setDono(value.getUser().getName());
         oportunidade.setTitulo(value.getTitle());
         oportunidade.setOrigem(value.getOrigin().getName());
-        
 
-        if (value.getPerson().getCpf().length() > 0) {
+        // Verifica se o cpf está cadastrado no Piperun, caso não esteja não cria a pessoa fisica no banco
+        if (value.getPerson().getCpf()!= null) {
             // Vincula a pessoa fisica, porém é necessário que o cliente esteja com CPF cadastrado no Piperun
             PessoaFisica pessoaFisica = servicePessoaFisica.findByCpf(value.getPerson().getCpf());
-            
+
+            // verifica se a pessoa já está cadastrada no banco, senão cria um novo objeto
             if (pessoaFisica == null) {
                 pessoaFisica = new PessoaFisica();
                 pessoaFisica.setCpf(value.getPerson().getCpf());
@@ -67,12 +68,14 @@ public class OportunidadeService {
 
             PessoaFisica tempPessoa = servicePessoaFisica.save(pessoaFisica);
 
-            Proponente pr = new Proponente();
-            pr.setPessoaFisica(tempPessoa);
-            pr.setIsPrincipal(true);
+            Proponente pr = serviceProponente.getPropontente(tempPessoa.getId(), oportunidade.getId());
 
+            if (pr == null) {                
+                pr = new Proponente();
+                pr.setPessoaFisica(tempPessoa);
+                pr.setIsPrincipal(true);
+            }
             oportunidade.adicionaProponente(pr);
-
         }
 
         serviceOportunidade.save(oportunidade);

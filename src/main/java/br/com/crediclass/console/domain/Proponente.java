@@ -7,6 +7,7 @@
  */
 package br.com.crediclass.console.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.Objects;
@@ -36,15 +37,19 @@ public class Proponente implements Serializable {
     private Long id;
 
     private Boolean isPrincipal = false;
-    
+
     @ManyToOne
     @JoinColumn(name = "pessoa_fisica_id", nullable = true)
     private PessoaFisica pessoaFisica;
 
-
     @ManyToOne
     @JoinColumn(name = "pessoa_juridica_id", nullable = true)
     private PessoaJuridica pessoaJuridica;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "oportunidade_id")
+    private Oportunidade oportunidade;
 
     @Override
     public int hashCode() {
