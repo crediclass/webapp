@@ -51,6 +51,7 @@ public class OportunidadeService {
         oportunidade.setDono(value.getUser().getName());
         oportunidade.setTitulo(value.getTitle());
         oportunidade.setOrigem(value.getOrigin().getName());
+        
 
         if (value.getPerson().getCpf().length() > 0) {
             // Vincula a pessoa fisica, porém é necessário que o cliente esteja com CPF cadastrado no Piperun
