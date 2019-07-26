@@ -23,7 +23,6 @@ import javax.persistence.Transient;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  *
@@ -38,10 +37,11 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nome;  
+    private String nome;
     private String email;
     private String username;
-    @Setter(AccessLevel.NONE) private String password;
+    @Setter(AccessLevel.NONE)
+    private String password;
     private String telefone;
     private String foto;
     private Boolean enabled;
@@ -49,19 +49,15 @@ public class Usuario implements Serializable {
     private Boolean isAdmin;
     private Boolean isDocumentoVencido;
     private Boolean isGrupoVencido;
-    
+
     @Transient
-    private String name;    
-    
+    private String name;
 
     public void setPassword(String password) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();		
-        this.password =  passwordEncoder.encode(password);
+//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();		
+//        this.password =  passwordEncoder.encode(password);
+        this.password = password;
     }
-    
-    
-    
-    
 
     @JoinTable(name = "console_permissao_x_usuario",
             joinColumns = {
