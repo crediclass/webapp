@@ -58,7 +58,7 @@ public class Oportunidade implements Serializable {
 
     private String dono;
 
-    private Boolean isAtivo;
+    private Boolean isAtivo = true;
 
     @NumberFormat(style = NumberFormat.Style.CURRENCY, pattern = "#,##0.00")
     @Column(nullable = true, columnDefinition = "DECIMAL(10,2)")
