@@ -48,12 +48,10 @@ public class OportunidadeController {
     public ResponseEntity<Oportunidade> save(@RequestBody Oportunidade value) {
         return new ResponseEntity<>(service.save(value), HttpStatus.OK);
     }
+    
 
     @PostMapping("/piperun")
     public ResponseEntity<Oportunidade> saveFromPiperun(@RequestBody InformacaoPiperun value) {
-        
-        
-
         return new ResponseEntity<>(service.saveOportunidadePiperun(value), HttpStatus.OK);
     }
 
