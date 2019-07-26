@@ -18,5 +18,6 @@ public interface PessoaFisicaRepository extends JpaRepository<PessoaFisica, Long
     public List<PessoaFisica> findAllByOrderByIdDesc();
     
     public PessoaFisica findByCpf(String cpf);
+            
     
 }

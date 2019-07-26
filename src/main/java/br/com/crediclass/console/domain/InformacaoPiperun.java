@@ -39,4 +39,9 @@ public class InformacaoPiperun implements Serializable {
 	private float value;
         
         private Usuario user;
+        
+        private Usuario origin;
+        
+        private PessoaFisica person;
+        
 }

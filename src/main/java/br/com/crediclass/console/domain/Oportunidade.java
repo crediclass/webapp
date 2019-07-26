@@ -85,6 +85,11 @@ public class Oportunidade implements Serializable {
     private List<DocumentosBemObjetoDados> documentoBemObjeto;   
     
     
+    public void adicionaProponente(Proponente proponente){
+        proponentes.add(proponente);
+    }
+    
+    
 
     @Override
     public int hashCode() {

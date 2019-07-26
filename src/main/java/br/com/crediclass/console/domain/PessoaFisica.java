@@ -24,6 +24,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -77,6 +78,11 @@ public class PessoaFisica implements Serializable {
     
     
     private String nomeDaMae;
+    
+    @Transient
+    private String name;
+    @Transient
+    private ContactMail[] contact_emails;
     
     
 

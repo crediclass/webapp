@@ -9,7 +9,12 @@ package br.com.crediclass.console.service;
 
 import br.com.crediclass.console.domain.Oportunidade;
 import br.com.crediclass.console.domain.InformacaoPiperun;
+import br.com.crediclass.console.domain.PessoaFisica;
+import br.com.crediclass.console.domain.Proponente;
 import br.com.crediclass.console.repository.OportunidadeRepository;
+import br.com.crediclass.console.repository.PessoaFisicaRepository;
+import br.com.crediclass.console.repository.ProponenteRepository;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,42 +27,72 @@ import org.springframework.stereotype.Service;
 public class OportunidadeService {
 
     @Autowired
-    private OportunidadeRepository service;
+    private OportunidadeRepository serviceOportunidade;
+
+    private ProponenteRepository serviceProponente;
+
+    @Autowired
+    private PessoaFisicaRepository servicePessoaFisica;
 
     public Oportunidade save(Oportunidade value) {
-        return service.save(value);
+        return serviceOportunidade.save(value);
     }
 
     public Oportunidade saveOportunidadePiperun(InformacaoPiperun value) {
 
-        Oportunidade opp = service.findByHash(value.getHash());
+        Oportunidade oportunidade = serviceOportunidade.findByHash(value.getHash());
 
-        if (opp == null) {
+        if (oportunidade == null) {
             //System.out.println("Objeto não existe");
-            opp = new Oportunidade();
-            opp.setHash(value.getHash());
+            oportunidade = new Oportunidade();
+            oportunidade.setHash(value.getHash());
         }
-        opp.setPiperunId(value.getId());
-        opp.setDono(value.getUser().getName());
-        opp.setTitulo(value.getTitle());
+        oportunidade.setPiperunId(value.getId());
+        oportunidade.setDono(value.getUser().getName());
+        oportunidade.setTitulo(value.getTitle());
+        oportunidade.setOrigem(value.getOrigin().getName());
 
-        return service.save(opp);
+        if (value.getPerson().getCpf().length() > 0) {
+            // Vincula a pessoa fisica, porém é necessário que o cliente esteja com CPF cadastrado no Piperun
+            PessoaFisica pessoaFisica = servicePessoaFisica.findByCpf(value.getPerson().getCpf());
+            
+            if (pessoaFisica == null) {
+                pessoaFisica = new PessoaFisica();
+                pessoaFisica.setCpf(value.getPerson().getCpf());
+            }
+
+            pessoaFisica.setNome(value.getPerson().getName());
+            pessoaFisica.setEmail(value.getPerson().getContact_emails()[0].getAddress());
+
+            PessoaFisica tempPessoa = servicePessoaFisica.save(pessoaFisica);
+
+            Proponente pr = new Proponente();
+            pr.setPessoaFisica(tempPessoa);
+            pr.setIsPrincipal(true);
+
+            oportunidade.adicionaProponente(pr);
+
+        }
+
+        serviceOportunidade.save(oportunidade);
+
+        return oportunidade;
     }
 
     public Oportunidade findById(Long id) {
-        return service.findById(id).get();
+        return serviceOportunidade.findById(id).get();
     }
 
     public List<Oportunidade> findAll() {
-        return service.findAll();
+        return serviceOportunidade.findAll();
     }
 
     public void deleteById(Long id) {
-        service.deleteById(id);
+        serviceOportunidade.deleteById(id);
     }
 
     public void delete(Oportunidade value) {
-        service.delete(value);
+        serviceOportunidade.delete(value);
     }
 
 }

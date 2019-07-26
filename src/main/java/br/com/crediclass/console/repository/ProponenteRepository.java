@@ -11,6 +11,7 @@ import br.com.crediclass.console.domain.Proponente;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -23,5 +24,8 @@ public interface ProponenteRepository extends JpaRepository<Proponente, Long> {
     
     @Query(value = "SELECT * FROM view_docs_vencidos WHERE periodo <= 5", nativeQuery = true)
     List<?> getDocumentosVencidos();
+    
+    @Query(value = "SELECT * FROM console_proponente WHERE pessoa_fisica_id = 1 AND oportunidade_id = 1", nativeQuery = true)
+    public Proponente getPropontente(@Param("pessoa_id") Long pessoa_id, @Param("oportunidade_id") Long oportunidade_id);
     
 }

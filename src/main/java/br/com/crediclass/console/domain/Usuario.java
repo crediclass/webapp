@@ -19,6 +19,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,8 +37,7 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nome;
-    private String name;
+    private String nome;  
     private String email;
     private String username;
     @Setter(AccessLevel.NONE) private String password;
@@ -48,6 +48,9 @@ public class Usuario implements Serializable {
     private Boolean isAdmin;
     private Boolean isDocumentoVencido;
     private Boolean isGrupoVencido;
+    
+    @Transient
+    private String name;    
     
 
     public void setPassword(String password) {
