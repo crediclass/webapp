@@ -3,7 +3,7 @@ app.controller("administradoraController", function ($scope, $http, messageServi
 
     $scope.administradora = {};
     $scope.administradoras = [];
-    var baseUrl = '/console/consorcio/administradoras';
+    var baseUrl = '/api/consorcio/administradoras';
 
     $scope.findAll = function () {
         $http({

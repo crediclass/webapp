@@ -1,9 +1,11 @@
 app.controller('menuUsuarioController', function ($scope, $http, $window, $routeParams, $location, messageService, authAPI) {
+    
+    $scope.usuario = {};
 
-    authAPI.setUsuario(1);
-    usuarioCompartilhado = {};
+    authAPI.setUsuario(1, 'Provisório');
 
-    usuarioCompartilhado = authAPI.getUsuario();
+
+    $scope.usuario = authAPI.getUsuario();
 
 
 

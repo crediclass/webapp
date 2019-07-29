@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Fabiano Fernandes <fabiano.fernandes at crediclass.com.br>
  */
 @RestController
-@RequestMapping("/console/consorcio/grupos")
+@RequestMapping("/api/consorcio/grupos")
 public class GrupoConsorcioController {
 
     @Autowired

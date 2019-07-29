@@ -1,5 +1,5 @@
 app.controller('grupoConsorcioController', function ($scope, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $http, $q, messageService) {
-    var baseUrl = '/console/consorcio/grupos';
+    var baseUrl = '/api/consorcio/grupos';
     $scope.grupo = {};
     $scope.grupos = [];
     $scope.administradoras = [];
@@ -256,7 +256,7 @@ app.controller('grupoConsorcioController', function ($scope, DTOptionsBuilder, D
     getAllAdministradoras = function () {
         $http({
             method: 'GET',
-            url: '/console/consorcio/administradoras'
+            url: '/api/consorcio/administradoras'
         }).then(function (response) {
             $scope.administradoras = response.data;
         }, function (response) {

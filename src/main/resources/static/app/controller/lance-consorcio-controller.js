@@ -16,14 +16,14 @@ app.controller("lanceConsorcioController", function ($scope, $http, messageServi
         let periodo = $scope.dataLances.valor.valor;
         $http({
             method: 'GET',
-            url: 'console/consorcio/grupos/administradora/periodo?administradora=' + administradora.id + '&periodo=' + periodo
+            url: 'api/consorcio/grupos/administradora/periodo?administradora=' + administradora.id + '&periodo=' + periodo
         }).then(function (response) {
             $scope.grupos = response.data;
             // Não possui nenhum grupo com o periodo 
             if (response.data.length == 0) {
                 $http({
                     method: 'GET',
-                    url: 'console/consorcio/grupos/administradora/' + administradora.id
+                    url: 'api/consorcio/grupos/administradora/' + administradora.id
                 }).then(function (response) {
                     $scope.grupos = [];
                     $scope.grupos = response.data;
@@ -82,7 +82,7 @@ app.controller("lanceConsorcioController", function ($scope, $http, messageServi
     $scope.carregaPorPeriodo = function () {
         $http({
             method: 'GET',
-            url: '/console/consorcio/grupos/periodo/' + $scope.dataLances.valor.valor
+            url: '/api/consorcio/grupos/periodo/' + $scope.dataLances.valor.valor
         }).then(function (response) {
             $scope.grupos = response.data;
         }, function (response) {
@@ -99,7 +99,7 @@ app.controller("lanceConsorcioController", function ($scope, $http, messageServi
         console.log(grupo);
         $http({
             method: 'POST',
-            url: '/console/consorcio/grupos',
+            url: '/api/consorcio/grupos',
             data: grupo
         }).then(function (response) {
             messageService.save();
@@ -112,7 +112,7 @@ app.controller("lanceConsorcioController", function ($scope, $http, messageServi
     getAllAdministradoras = function () {
         $http({
             method: 'GET',
-            url: '/console/consorcio/administradoras'
+            url: '/api/consorcio/administradoras'
         }).then(function (response) {
             $scope.administradoras = response.data;
         }, function (response) {
@@ -126,7 +126,7 @@ app.controller("lanceConsorcioController", function ($scope, $http, messageServi
     getAllGrupos = function () {
         $http({
             method: 'GET',
-            url: '/console/consorcio/grupos'
+            url: '/api/consorcio/grupos'
         }).then(function (response) {
             $scope.grupos = response.data;
         }, function (response) {

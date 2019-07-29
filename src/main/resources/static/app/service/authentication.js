@@ -9,8 +9,9 @@ app.factory('authAPI', function ($http) {
 
     };
 
-    service.setUsuario = function (value) {
-        usuario.id = value;
+    service.setUsuario = function (id, name) {
+        usuario.id = id;
+        usuario.name = name;
         
     };
 

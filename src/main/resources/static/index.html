@@ -58,14 +58,14 @@
 
                 <span class="navbar-text ml-md-3 mr-md-auto"></span>
 
-                <ul class="navbar-nav">                            				
+                <ul class="navbar-nav" ng-controller="menuUsuarioController">                            				
                     <li class="nav-item dropdown dropdown-user">
                         <a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
                             <img src="/assets/image/user-silhouette.png" width="32px" height="32px" class="rounded-circle" alt="">
-                            <span>Administrador</span>
+                            <span>{{usuario.name}}</span>
                         </a>
 
-                        <div class="dropdown-menu dropdown-menu-right" ng-controller="menuUsuarioController">
+                        <div class="dropdown-menu dropdown-menu-right" >
                             <a href="#" ng-click="$event.preventDefault(); editarPerfil()" class="dropdown-item"><i class="icon-user-plus"></i> Meu perfil</a>
                             <a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Mensagens <span class="badge badge-pill bg-blue ml-auto">58</span></a>
                             <div class="dropdown-divider"></div>
