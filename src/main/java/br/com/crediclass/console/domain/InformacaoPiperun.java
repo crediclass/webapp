@@ -42,6 +42,10 @@ public class InformacaoPiperun implements Serializable {
         
         private Usuario origin;
         
+        private Usuario stage;
+        
+        private Usuario pipeline;
+        
         private PessoaFisica person;
         
 }

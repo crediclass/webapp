@@ -51,32 +51,35 @@ public class OportunidadeService {
         oportunidade.setDono(value.getUser().getName());
         oportunidade.setTitulo(value.getTitle());
         oportunidade.setOrigem(value.getOrigin().getName());
-
-        // Verifica se o cpf está cadastrado no Piperun, caso não esteja não cria a pessoa fisica no banco
-        if (value.getPerson().getCpf()!= null) {
-            // Vincula a pessoa fisica, porém é necessário que o cliente esteja com CPF cadastrado no Piperun
-            PessoaFisica pessoaFisica = servicePessoaFisica.findByCpf(value.getPerson().getCpf());
-
-            // verifica se a pessoa já está cadastrada no banco, senão cria um novo objeto
-            if (pessoaFisica == null) {
-                pessoaFisica = new PessoaFisica();
-                pessoaFisica.setCpf(value.getPerson().getCpf());
-            }
-
-            pessoaFisica.setNome(value.getPerson().getName());
-            pessoaFisica.setEmail(value.getPerson().getContact_emails()[0].getAddress());
-
-            PessoaFisica tempPessoa = servicePessoaFisica.save(pessoaFisica);
-
-            Proponente pr = serviceProponente.getPropontente(tempPessoa.getId(), oportunidade.getId());
-
-            if (pr == null) {                
-                pr = new Proponente();
-                pr.setPessoaFisica(tempPessoa);
-                pr.setIsPrincipal(true);
-            }
-            oportunidade.adicionaProponente(pr);
-        }
+        oportunidade.setNomeFunil(value.getStage().getName());
+        oportunidade.setEstapaFunil(value.getPipeline().getName());
+        
+//
+//        // Verifica se o cpf está cadastrado no Piperun, caso não esteja não cria a pessoa fisica no banco
+//        if (value.getPerson().getCpf()!= null) {
+//            // Vincula a pessoa fisica, porém é necessário que o cliente esteja com CPF cadastrado no Piperun
+//            PessoaFisica pessoaFisica = servicePessoaFisica.findByCpf(value.getPerson().getCpf());
+//
+//            // verifica se a pessoa já está cadastrada no banco, senão cria um novo objeto
+//            if (pessoaFisica == null) {
+//                pessoaFisica = new PessoaFisica();
+//                pessoaFisica.setCpf(value.getPerson().getCpf());
+//            }
+//
+//            pessoaFisica.setNome(value.getPerson().getName());
+//            pessoaFisica.setEmail(value.getPerson().getContact_emails()[0].getAddress());
+//
+//            PessoaFisica tempPessoa = servicePessoaFisica.save(pessoaFisica);
+//
+//            Proponente pr = serviceProponente.getPropontente(tempPessoa.getId(), oportunidade.getId());
+//
+//            if (pr == null) {                
+//                pr = new Proponente();
+//                pr.setPessoaFisica(tempPessoa);
+//                pr.setIsPrincipal(true);
+//            }
+//            oportunidade.adicionaProponente(pr);
+//        }
 
         serviceOportunidade.save(oportunidade);
 

@@ -57,6 +57,12 @@ public class Oportunidade implements Serializable {
     private String origem;
 
     private String dono;
+    
+    private String estapaFunil;
+    
+    private String nomeFunil;
+    
+    
 
     private Boolean isAtivo = true;
 

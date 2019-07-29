@@ -280,8 +280,9 @@ app.controller("listaOportunidadeController", function ($scope, DTOptionsBuilder
         // console.log(value.documento[0].dataEmissao);
 
         var dt = new Date(value.documento[0].dataEmissao);
-        dt.setFullYear(dt.getFullYear() + value.validade);
+        dt.setMonth(dt.getMonth() + value.validade);
         value.documento[0].dataValidade = dt.toLocaleDateString();
+        console.log(dt.toLocaleDateString());
 //        console.log(dt);
 //        console.log(value);
 
